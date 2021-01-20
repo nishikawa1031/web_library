@@ -34,13 +34,34 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    [
+      'nuxt-i18n',
+      {
+        strategy: 'prefix_and_default',
+        // 切り替える言語を定義
+        locales: [
+          { code: 'ja', iso: 'ja_JP', file: 'ja.json' ,name: '日本語'},
+          { code: 'en', iso: 'en-US', file: 'en.json' ,name: 'English'},
+        ],
+        // デフォルトの言語を↑で定義したcodeで記載
+        defaultLocale: 'ja',
+        vueI18n: {
+          // ファイルが読めなかった場合の言語を定義
+          fallbackLocale: 'en',
+        },
+        vueI18nLoader: true,
+        lazy: true,
+        // 言語ファイル(.json)のディレクトリを記載
+        langDir: 'locales/',
+      },
+    ],
   ],
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

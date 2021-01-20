@@ -5,12 +5,12 @@
         <v-layout>
           <v-flex lg12>
               <!-- <v-col><Logo /></v-col> -->
-              <v-btn text to="/">languages</v-btn>
+              <v-btn text to="/">{{ $t('title') }}</v-btn>
           </v-flex>
         </v-layout>
       </v-toolbar-title>
       <v-toolbar-items>
-        <v-btn text to="/login">{{ 'ログイン' }}</v-btn>
+        <v-btn text to="/login">{{ $t('login') }}</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -52,16 +52,16 @@ export default {
     }
   },
   mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.isWaiting = false
-      if (user) {
-        this.isLogin = true
-        this.user = user
-      } else {
-        this.isLogin = false
-        this.user = []
-      }
-    })
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   this.isWaiting = false
+    //   if (user) {
+    //     this.isLogin = true
+    //     this.user = user
+    //   } else {
+    //     this.isLogin = false
+    //     this.user = []
+    //   }
+    // })
   },
   components: {
     Logo
@@ -73,12 +73,12 @@ export default {
   },
   methods: {
     googleLogin() {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
-      this.$router.push({path:'/login'})
+      // const provider = new firebase.auth.GoogleAuthProvider()
+      // firebase.auth().signInWithRedirect(provider)
+      // this.$router.push({path:'/login'})
     },
     logOut() {
-      firebase.auth().signOut()
+      // firebase.auth().signOut()
     }
   }
 }
