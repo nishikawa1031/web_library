@@ -1,18 +1,18 @@
 <template>
   <v-app>
-    <v-app-bar fixed app>
+    <v-app-bar fixed app color="blue-grey darken-4">
       <v-toolbar-title>
         <v-layout>
           <v-flex lg12>
-              <!-- <v-col><Logo /></v-col> -->
-              <v-btn text to="/">{{ $t('title') }}</v-btn>
+            <v-btn text to="/" color="white">{{ $t('title') }}</v-btn>
           </v-flex>
         </v-layout>
       </v-toolbar-title>
       <v-toolbar-items>
-        <v-btn text to="/login">{{ $t('login') }}</v-btn>
+        <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
+        <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
