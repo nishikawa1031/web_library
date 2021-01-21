@@ -30,6 +30,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
+      <Article />
     </v-col>
   </v-row>
 </template>

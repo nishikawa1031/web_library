@@ -31,6 +31,9 @@
       <v-spacer></v-spacer>
         <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
     </v-app-bar>
+    <div class="naviContainer">
+      <side-navigation />
+    </div>
     <v-content>
       <v-container>
         <nuxt />
@@ -61,7 +64,12 @@
 // import firebase from '@/plugins/firebase'
 
 import Logo from '~/components/Logo.vue'
+import SideNavigation from '~/components/SideNavigation.vue'
+
 export default {
+  components: {
+    SideNavigation
+  },
   asyncData() {
     return {
       isWaiting: true,
@@ -100,3 +108,35 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.naviContainer {
+  background-color: $gray-1;
+}
+@include lessThan($small) {
+  .naviContainer {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: z-index-of(sp-navigation);
+  }
+}
+@include largerThan($small) {
+  .naviContainer {
+    grid-column: 1/2;
+    position: fixed;
+    top: 0;
+    overflow-y: auto;
+    width: 240px;
+    height: 100%;
+    border-right: 1px solid $gray-4;
+    border-left: 1px solid $gray-4;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    overscroll-behavior: contain;
+  }
+}
+@include largerThan($huge) {
+  .naviContainer {
+    width: 325px;
+  }
+}
+</style>
