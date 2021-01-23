@@ -1,10 +1,9 @@
 <template>
   <small class="SideNavigation-Copyright">
-    <v-row><v-btn text to="">About Us</v-btn></v-row>
-    <v-row><v-btn text to="">News</v-btn></v-row>
-    <v-row><v-btn text to="">Contact Us</v-btn></v-row>
-    <v-row><v-btn text to="">Privacy Policy</v-btn></v-row>
-    <v-row><v-btn text to="">Terms of Use</v-btn></v-row>
+    <v-row><v-btn small text to="" color="white">About Us</v-btn></v-row>
+    <v-row><v-btn small text to="" color="white">Contact Us</v-btn></v-row>
+    <v-row><v-btn small text to="" color="white">Privacy Policy</v-btn></v-row>
+    <v-row><v-btn small text to="" color="white">Terms of Use</v-btn></v-row>
   </small>
 </template>
 
