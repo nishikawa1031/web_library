@@ -50,7 +50,7 @@ export default {
       text-align: left;
       background-color: transparent;
       display: inline-block;
-      padding: 10px 30px;
+      padding: 10px 10px;
       font-size: 18px;
   }
   .years li {

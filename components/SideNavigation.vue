@@ -9,25 +9,11 @@
         </nuxt-link>
       </h1>
     </header>
-    <div>
+    <div class="SideNavigation-Body">
       <Calender/>
 
       <footer class="SideNavigation-Footer">
-        <v-row>
-          <v-col lg="1">
-            <v-row><v-btn text to="">About Us</v-btn></v-row>
-            <v-row><v-btn text to="">News</v-btn></v-row>
-            <v-row><v-btn text to="">Contact Us</v-btn></v-row>
-          </v-col>
-          <v-col lg="1">
-
-          </v-col>
-          <v-col lg="1">
-            <v-row><v-btn text to="">Privacy Policy</v-btn></v-row>
-            <v-row><v-btn text to="">Terms of Use</v-btn></v-row>
-          </v-col>
-          <v-spacer></v-spacer>
-        </v-row>
+        <footer-navigation />
       </footer>
     </div>
   </div>

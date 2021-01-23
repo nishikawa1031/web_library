@@ -13,9 +13,6 @@
         </v-container>
       </main>
     </div>
-    <v-footer>
-      <footer-navigation />
-    </v-footer>
   </v-app>
 </template>
 
