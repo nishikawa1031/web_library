@@ -8,8 +8,6 @@
   </ol>
 </template>
 
-
-
 <script>
 export default {
   data () {
@@ -46,20 +44,20 @@ export default {
 </script>
 
 
-<style>
-    .years {
-        list-style-type: none;
-        text-align: left;
-        background-color: #C4C4C4;
-        display: inline-block;
-        padding: 10px 30px;
-        font-size: 20px;
-    }
-    .years li {
-        margin: 5px 0;
-    }
-    .years li a {
-        color: black;
-        text-decoration: none;
-    }
+<style lang="scss" scoped>
+  .years {
+      list-style-type: none;
+      text-align: left;
+      background-color: transparent;
+      display: inline-block;
+      padding: 10px 30px;
+      font-size: 18px;
+  }
+  .years li {
+      margin: 5px 0;
+  }
+  .years li a {
+      color: white;
+      text-decoration: none;
+  }
 </style>

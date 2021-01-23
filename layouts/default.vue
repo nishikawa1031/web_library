@@ -1,31 +1,20 @@
 <template>
-  <v-app>
-    <head-navigation />
-    <div class="naviContainer">
-      <side-navigation />
+  <v-app class="app">
+    <div class="headerContainer">
+      <head-navigation />
     </div>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
+    <div class="appContainer">
+      <div class="naviContainer">
+        <side-navigation />
+      </div>
+      <main class="mainContainer">
+        <v-container class="px-4 py-8">
+          <nuxt />
+        </v-container>
+      </main>
+    </div>
     <v-footer>
-      <v-row>
-        <v-col lg="1">
-          <v-row><v-btn text to="">About Us</v-btn></v-row>
-          <v-row><v-btn text to="">News</v-btn></v-row>
-          <v-row><v-btn text to="">Contact Us</v-btn></v-row>
-        </v-col>
-        <v-col lg="1">
-
-        </v-col>
-        <v-col lg="1">
-          <v-row><v-btn text to="">Privacy Policy</v-btn></v-row>
-          <v-row><v-btn text to="">Terms of Use</v-btn></v-row>
-        </v-col>
-        <v-spacer></v-spacer>
-      </v-row>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <footer-navigation />
     </v-footer>
   </v-app>
 </template>
@@ -79,7 +68,26 @@ export default {
 }
 </script>
 <style lang="scss">
+.app {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: inherit !important;
+}
+.appContainer {
+  top: 40px;
+  position: relative;
+  @include largerThan($small) {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto;
+  }
+  @include largerThan($huge) {
+    grid-template-columns: 325px 1fr;
+    grid-template-rows: auto;
+  }
+}
 .naviContainer {
+  position: relative;
   background-color: $gray-1;
 }
 @include lessThan($small) {
@@ -93,7 +101,7 @@ export default {
 @include largerThan($small) {
   .naviContainer {
     grid-column: 1/2;
-    position: fixed;
+    position: relative;
     top: 0;
     overflow-y: auto;
     width: 240px;
@@ -107,6 +115,15 @@ export default {
 @include largerThan($huge) {
   .naviContainer {
     width: 325px;
+  }
+}
+.mainContainer {
+  grid-column: 2/3;
+  overflow: hidden;
+  @include lessThan($small) {
+    .container {
+      padding-top: 16px;
+    }
   }
 }
 </style>

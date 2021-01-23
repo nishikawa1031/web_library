@@ -4,45 +4,80 @@
       <div class="text-center">
         2020年(令和2年) 民法
       </div>
-      <v-card>
-        <v-card-title class="headline">
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
+      <p>bbbb</p>
+          <li v-for="answer in displayAnswers()" :key="answer.id">
+            <p>ddd</p>
+            <v-card
+              class="mx-auto"
+              max-width="344"
+              outlined
             >
-              documentation
-            </a>.
-          </p>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+              {{ answer.like }}
+            </v-card>
+          </li>
+      <Article />
+    </v-col>
+    <v-col cols="12" sm="8" md="6">
+      <div class="text-center">
+        2020年(令和2年) 民法
+      </div>
+      <p>bbbb</p>
+          <li v-for="answer in displayAnswers()" :key="answer.id">
+            <p>ddd</p>
+            <v-card
+              class="mx-auto"
+              max-width="344"
+              outlined
+            >
+              {{ answer.like }}
+            </v-card>
+          </li>
       <Article />
     </v-col>
   </v-row>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import firebase from '@/plugins/firebase'
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  mounted(){
+    this.getUsers();
+    this.getAnswers();
+  },
+  methods: {
+    getUsers(){
+      this.allUsers = []
+      firebase
+        .firestore()
+        .collection('users')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.allUsers.push(doc.data())
+          })
+          console.log(this.allUsers)
+        })
+    },
+    displayUsers(){
+      return this.allUsers
+    },
+    getAnswers(){
+      this.allAnswers = []
+      firebase
+        .firestore()
+        .collection('answers')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.allAnswers.push(doc.data())
+          })
+          console.log(this.allAnswers)
+        })
+    },
+    displayAnswers(){
+      return this.allAnswers
+    }
   }
 }
 </script>
