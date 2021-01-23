@@ -17,50 +17,15 @@
 </template>
 
 <script>
-// import firebase from '@/plugins/firebase'
-
-import Logo from '~/components/Logo.vue'
 import SideNavigation from '~/components/SideNavigation.vue'
 
 export default {
   components: {
     SideNavigation
   },
-  asyncData() {
-    return {
-      isWaiting: true,
-      isLogin: false,
-    }
-  },
   mounted() {
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   this.isWaiting = false
-    //   if (user) {
-    //     this.isLogin = true
-    //     this.user = user
-    //   } else {
-    //     this.isLogin = false
-    //     this.user = []
-    //   }
-    // })
-  },
-  components: {
-    Logo
-  },
-  data() {
-    return {
-      fixed: false
-    }
   },
   methods: {
-    googleLogin() {
-      // const provider = new firebase.auth.GoogleAuthProvider()
-      // firebase.auth().signInWithRedirect(provider)
-      // this.$router.push({path:'/login'})
-    },
-    logOut() {
-      // firebase.auth().signOut()
-    }
   }
 }
 </script>
