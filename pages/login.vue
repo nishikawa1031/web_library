@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout justify-center>
+    <v-col cols="12" sm="8" md="6">
       <v-card
         v-if="isWaiting"
         class="mx-auto"
@@ -18,26 +19,66 @@
         >
           <v-btn @click="googleLogin">{{ $t('googlelogin') }}</v-btn>
         </v-card>
-      <v-card
-        v-else
-        class="mx-auto"
-        max-width="500"
-        outlined
-      >
-      <v-card-title>
-        {{ $t('sing_up') }}
-      </v-card-title>
-        <v-card-actions>
-          <v-btn @click="submit()">
-            {{$t('submit')}}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <br>
       </div>
-    <v-row>
-      <v-btn v-if="isLogin" @click="logOut">{{$t('logout')}}</v-btn>
-    </v-row>
+      <div v-if="isLogin">
+        <v-btn @click="logOut">{{$t('logout')}}</v-btn>
+        <br>
+        <v-card
+          class="mx-auto"
+          max-width="800"
+          outlined
+        >
+          <v-card-title>
+            {{ $t('post') }}
+          </v-card-title>
+          <v-card-text>
+            <v-select
+              v-model="user.category"
+              item-text="name"
+              item-value="name"
+              :rules="subjectRules"
+              :items="subjects"
+              label="科目"
+              dense
+            ></v-select>
+            <v-select
+              v-model="user.tool"
+              item-text="name"
+              item-value="name"
+              :rules="yearRules"
+              :items="years"
+              label="年度"
+              dense
+            ></v-select>
+            <v-text-field
+              v-model="user.content"
+              counter="200"
+              label="コメント"
+              outlined
+            ></v-text-field>
+            <label class="postImage-appendBtn">
+              <input @change="upload" type="file" data-label="画像の添付">
+            </label>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn @click="submit()">
+              {{$t('submit')}}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="8" md="6">
+        <v-card
+          class="mx-auto"
+          max-width="344"
+          outlined
+        >
+          <v-card-title>
+            {{ $t('profile') }}
+          </v-card-title>
+        </v-card>
+      </v-col>
     </v-layout>
   </v-container>
 </template>
@@ -51,6 +92,28 @@ export default {
       isWaiting: true,
       isLogin: false,
       user: []
+    }
+  },
+  data() {
+    return {
+      subjectRules:[
+        v => !!v || "subject is required",
+      ],
+      yearRules:[
+        v => !!v || 'year is required',
+      ],
+      subjects: [
+        { code: '01', name: '民法' },
+        { code: '02', name: '民訴' },
+        { code: '03', name: '商法' },
+        { code: '04', name: '刑法' },
+        { code: '03', name: '刑訴' },
+      ],
+      years:[
+        {name:'2020'},
+        {name:'2019'},
+        {name:'2018'},
+      ]
     }
   },
   mounted() {
@@ -72,6 +135,19 @@ export default {
     },
     logOut() {
       firebase.auth().signOut()
+    },
+    getUsers(){
+      this.allUsers = []
+      firebase
+        .firestore()
+        .collection('users')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.allUsers.push(doc.data())
+          })
+          console.log(this.allUsers)
+        })
     },
     submit() {
       const db = firebase.firestore()
@@ -112,7 +188,7 @@ export default {
                 console.log(error)
             })
         })
-    },
+    }
   },
 }
 </script>

@@ -1,14 +1,8 @@
 <template>
   <v-app-bar fixed app color="blue-grey darken-4">
-    <v-toolbar-title>
-      <v-layout>
-        <v-flex lg12>
-          <v-btn text to="/" color="white">{{ $t('title') }}</v-btn>
-        </v-flex>
-      </v-layout>
-    </v-toolbar-title>
     <v-toolbar-items>
-        <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
+      <v-btn text to="/" color="white">{{ $t('title') }}</v-btn>
+      <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{on}">
           <v-btn v-on="on" text color="white">民事系</v-btn>
@@ -26,8 +20,8 @@
           </v-list-item>
         </v-list>
       </v-menu>
+      <v-spacer></v-spacer>
+      <v-btn text to="/contributors" color="white">{{ $t('contributor') }}</v-btn>
     </v-toolbar-items>
-    <v-spacer></v-spacer>
-      <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
   </v-app-bar>
 </template>

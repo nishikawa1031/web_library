@@ -4,19 +4,17 @@
       <div class="text-center">
         2020年(令和2年) 民法
       </div>
-      <p>bbbb</p>
-          <li v-for="answer in displayAnswers()" :key="answer.id">
-            <p>ddd</p>
+          <li v-for="answer in allAnswers" :key="answer.id">
             <v-card
               class="mx-auto"
               max-width="344"
               outlined
             >
               {{ answer.like }}
-              {{ findContributor(answer.id) }}
+              {{ findContributor(answer.id)[0].name }}
             </v-card>
           </li>
-      <Article />
+      <!-- <Article /> -->
     </v-col>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
@@ -37,6 +35,11 @@
 import firebase from '@/plugins/firebase'
 
 export default {
+  data() {
+    return {
+      allAnswers:[],
+    }
+  },
   mounted(){
     this.getUsers();
     this.getAnswers();
@@ -68,8 +71,13 @@ export default {
           snapshot.forEach((doc) => {
             this.allAnswers.push(doc.data())
           })
-          console.log(this.allAnswers)
         })
+      const c = this.allAnswers
+      console.log("c",c)
+      for (const i in c) {
+        console.log(c[i])
+        return c[i]
+      }
     },
     displayAnswers(){
       return this.allAnswers
@@ -78,8 +86,16 @@ export default {
     findContributor(answerId){
       this.contributor = this.allUsers.filter(e => e.answer_id == answerId)
       console.log("contributor",this.contributor)
+      console.log("contributor",this.contributor[0].name)
       return this.contributor
     }
   }
 }
 </script>
+<style scoped>
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+
+</style>
