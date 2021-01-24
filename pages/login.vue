@@ -77,6 +77,14 @@
           <v-card-title>
             {{ $t('profile') }}
           </v-card-title>
+          <v-card-text>
+            {{ user }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn @click="edit()">
+              {{$t('edit')}}
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-layout>
@@ -91,7 +99,10 @@ export default {
     return {
       isWaiting: true,
       isLogin: false,
-      user: []
+      user: [],
+      loginUser: 'aaa',
+      year: [],
+      subject: []
     }
   },
   data() {

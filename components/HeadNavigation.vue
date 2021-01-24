@@ -20,6 +20,57 @@
           </v-list-item>
         </v-list>
       </v-menu>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn v-on="on" text color="white">刑事系</v-btn>
+        </template>
+        <v-list color="blue-grey darken-4">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民訴法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn v-on="on" text color="white">公法系</v-btn>
+        </template>
+        <v-list color="blue-grey darken-4">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民訴法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn v-on="on" text color="white">選択科目</v-btn>
+        </template>
+        <v-list color="blue-grey darken-4">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title color="white">民訴法</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-spacer></v-spacer>
       <v-btn text to="/contributors" color="white">{{ $t('contributor') }}</v-btn>
     </v-toolbar-items>

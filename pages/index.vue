@@ -1,34 +1,62 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-layout justify-center>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
         2020年(令和2年) 民法
       </div>
+        <ul>
           <li v-for="answer in allAnswers" :key="answer.id">
             <v-card
               class="mx-auto"
               max-width="344"
               outlined
             >
+              <v-list-item-avatar
+                tile
+                size="80"
+                color="grey"
+              >
+                <!-- <img :src="user.icon"/> -->
+              </v-list-item-avatar>
+              <v-card-title>
+                {{ findContributor(answer.id)[0].name }}
+              </v-card-title>
+              <v-list-item-content>
+                <div class="overline mb-4"></div>
+                <v-list-item-title class="headline mb-1">
+                  <!-- {{ user.name }} -->
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                    <!-- 学歴：{{ user.from }} -->
+                  <br>
+                    <!-- 司法試験の結果：{{ user.exam }} -->
+                  <br>
+                    <!-- 予備試験の結果：{{ user.pre }} -->
+                  <br>
+                    <!-- 予備校：{{ user.school }} -->
+                  <br>
+                    <!-- コメント：{{ user.comment }} -->
+                </v-list-item-subtitle>
+              </v-list-item-content>
               {{ answer.like }}
-              {{ findContributor(answer.id)[0].name }}
             </v-card>
           </li>
+        </ul>
       <!-- <Article /> -->
     </v-col>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
         答案
       </div>
-        <v-card>
-          <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia <br>
-          deserunt mollit anim id est laborum.Thanks for reading.</p>
-        </v-card>
+      <v-card>
+        <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia <br>
+        deserunt mollit anim id est laborum.Thanks for reading.</p>
+      </v-card>
     </v-col>
-  </v-row>
+  </v-layout>
 </template>
 
 <script>
