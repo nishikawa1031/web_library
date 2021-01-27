@@ -4,13 +4,14 @@
       <div class="text-center">
         2020年(令和2年) 民法
       </div>
-        <ul>
-          <li v-for="answer in allAnswers" :key="answer.id">
-            <v-card
-              class="mx-auto"
-              max-width="344"
-              outlined
-            >
+      <ul>
+        <li v-for="answer in allAnswers" :key="answer.id">
+          <v-card
+            class="mx-auto"
+            max-width="500"
+            outlined
+          >
+            <v-col cols="12" sm="8" md="6">
               <v-list-item-avatar
                 tile
                 size="80"
@@ -18,31 +19,29 @@
               >
                 <!-- <img :src="user.icon"/> -->
               </v-list-item-avatar>
-              <v-card-title>
-                {{ findContributor(answer.id)[0].name }}
-              </v-card-title>
+            </v-col>
+            <v-card-title>
+              {{ findContributor(answer.id).name }}
+            </v-card-title>
+            <v-col cols="12" sm="8" md="6">
               <v-list-item-content>
                 <div class="overline mb-4"></div>
                 <v-list-item-title class="headline mb-1">
                   <!-- {{ user.name }} -->
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                    <!-- 学歴：{{ user.from }} -->
+                    科目：{{ answer.subject }}
                   <br>
-                    <!-- 司法試験の結果：{{ user.exam }} -->
-                  <br>
-                    <!-- 予備試験の結果：{{ user.pre }} -->
-                  <br>
-                    <!-- 予備校：{{ user.school }} -->
-                  <br>
-                    <!-- コメント：{{ user.comment }} -->
+                    年度：{{ answer.year }}
+                    {{ answer.like }}
+                    {{ answer.count }}
                 </v-list-item-subtitle>
               </v-list-item-content>
-              {{ answer.like }}
-            </v-card>
-          </li>
-        </ul>
-      <!-- <Article /> -->
+            </v-col>
+          </v-card>
+        </li>
+      </ul>
+      <Article />
     </v-col>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
@@ -60,6 +59,7 @@
 </template>
 
 <script>
+import HeadNavigation from "@/components/HeadNavigation.vue"
 import firebase from '@/plugins/firebase'
 
 export default {
@@ -67,6 +67,9 @@ export default {
     return {
       allAnswers:[],
     }
+  },
+  components: {
+    'headNav':HeadNavigation,
   },
   mounted(){
     this.getUsers();
@@ -86,9 +89,6 @@ export default {
           console.log(this.allUsers)
         })
     },
-    displayUsers(){
-      return this.allUsers
-    },
     getAnswers(){
       this.allAnswers = []
       firebase
@@ -100,6 +100,7 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
+      console.log("allAnswers",this.allAnswers)
       const c = this.allAnswers
       console.log("c",c)
       for (const i in c) {
@@ -107,13 +108,10 @@ export default {
         return c[i]
       }
     },
-    displayAnswers(){
-      return this.allAnswers
-    },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
       this.contributor = this.allUsers.filter(e => e.answer_id == answerId)
-      console.log("contributor",this.contributor)
+      console.log("contri",this.contributor)
       console.log("contributor",this.contributor[0].name)
       return this.contributor
     }
@@ -123,7 +121,9 @@ export default {
 <style scoped>
   li {
     list-style: none;
-    display: inline-block;
+    display: list-item;
   }
-
+  .card-content {
+    list-style-type: unset;
+  }
 </style>

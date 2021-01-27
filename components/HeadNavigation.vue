@@ -10,12 +10,9 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title color="white">民法</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title color="white">民訴法</v-list-item-title>
+              <v-btn text color="white" @click="selectSubject(civil_low)">民法</v-btn>
+              <v-btn text color="white" @click="selectSubject(civil_low)">民訴</v-btn>
+              <v-btn text color="white" @click="selectSubject(civil_low)">商法</v-btn>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -76,3 +73,27 @@
     </v-toolbar-items>
   </v-app-bar>
 </template>
+
+<script>
+export default {
+  asyncData() {
+    return {
+      allAnswers: [],
+      displayAnswers: [],
+      user: [],
+      year: [],
+      subject: [],
+      civil_low: []
+    }
+  },
+  methods: {
+    selectSubject(selectedSubject) {
+      console.log('selectedSubject',selectedSubject)
+      console.log(this.allAnswers)
+      this.displayAnswers = this.allAnswers.filter(e => e.subject == answer.selectedSubject)
+      console.log(this.displayAnswers)
+      console.log("fff")
+    }
+  }
+}
+</script>
