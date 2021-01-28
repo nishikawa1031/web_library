@@ -76,6 +76,7 @@ export default {
   mounted(){
     this.getUsers();
     this.getAnswers();
+    this.selectSubject();
   },
   methods: {
     getUsers(){
@@ -88,7 +89,6 @@ export default {
           snapshot.forEach((doc) => {
             this.allUsers.push(doc.data())
           })
-          console.log(this.allUsers)
         })
     },
     getAnswers(){
@@ -102,12 +102,11 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      console.log("allAnswers",this.allAnswers)
       this.displayAnswers = this.allAnswers
     },
     selectSubject() {
-      console.log('selectedSubject',this.$refs.headNav.subj)
       console.log('allAnswers',this.allAnswers)
+      console.log('selectedSubject',this.$refs.headNav.subj)
       this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
       console.log('displayAnsers',this.displayAnswers)
     },
