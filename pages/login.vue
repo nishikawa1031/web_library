@@ -33,7 +33,7 @@
           </v-card-title>
           <v-card-text>
             <v-select
-              v-model="user.category"
+              v-model="answer.subject"
               item-text="name"
               item-value="name"
               :rules="subjectRules"
@@ -42,7 +42,7 @@
               dense
             ></v-select>
             <v-select
-              v-model="user.tool"
+              v-model="answer.year"
               item-text="name"
               item-value="name"
               :rules="yearRules"
@@ -113,6 +113,10 @@ export default {
       yearRules:[
         v => !!v || 'year is required',
       ],
+      answer: {
+        year: '',
+        subject: ''
+      },
       subjects: [
         { code: '01', name: '民法' },
         { code: '02', name: '民訴' },
