@@ -10,7 +10,7 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <v-btn text color="white" @click="selectSubject(civil_low)">民法</v-btn>
+              <v-btn text color="black" @click="sendSubject('民法')">民法</v-btn>
               <v-btn text color="white" @click="selectSubject(civil_low)">民訴</v-btn>
               <v-btn text color="white" @click="selectSubject(civil_low)">商法</v-btn>
             </v-list-item-content>
@@ -83,16 +83,11 @@ export default {
       user: [],
       year: [],
       subject: [],
-      civil_low: []
+      subj: []
     }
   },
   methods: {
-    selectSubject(selectedSubject) {
-      console.log('selectedSubject',selectedSubject)
-      console.log(this.allAnswers)
-      this.displayAnswers = this.allAnswers.filter(e => e.subject == answer.selectedSubject)
-      console.log(this.displayAnswers)
-      console.log("fff")
+    sendSubject(subj) {
     }
   }
 }

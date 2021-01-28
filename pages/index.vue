@@ -3,9 +3,10 @@
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
         2020年(令和2年) 民法
+        <p>sdddd</p>
       </div>
       <ul>
-        <li v-for="answer in allAnswers" :key="answer.id">
+        <li v-for="answer in displayAnswers" :key="answer.id">
           <v-card
             class="mx-auto"
             max-width="500"
@@ -66,6 +67,7 @@ export default {
   data() {
     return {
       allAnswers:[],
+      displayAnswers: []
     }
   },
   components: {
@@ -101,18 +103,17 @@ export default {
           })
         })
       console.log("allAnswers",this.allAnswers)
-      const c = this.allAnswers
-      console.log("c",c)
-      for (const i in c) {
-        console.log(c[i])
-        return c[i]
-      }
+      this.displayAnswers = this.allAnswers
+    },
+    selectSubject() {
+      console.log('selectedSubject',this.$refs.headNav.subj)
+      console.log('allAnswers',this.allAnswers)
+      this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
+      console.log('displayAnsers',this.displayAnswers)
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
       this.contributor = this.allUsers.filter(e => e.answer_id == answerId)
-      console.log("contri",this.contributor)
-      console.log("contributor",this.contributor[0].name)
       return this.contributor
     }
   }

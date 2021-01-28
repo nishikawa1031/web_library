@@ -157,7 +157,6 @@ export default {
           snapshot.forEach((doc) => {
             this.allUsers.push(doc.data())
           })
-          console.log(this.allUsers)
         })
     },
     submit() {

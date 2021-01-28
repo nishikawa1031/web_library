@@ -91,13 +91,7 @@ export default {
 
           this.length = Math.ceil(this.allUsers.length/this.pageSize)
           this.displayUsers = this.allUsers.slice(0,this.pageSize)
-          const c = this.displayUsers
-          console.log(this.displayUsers)
 
-          for (const i in c) {
-            console.log(c[i])
-            return c[i]
-          }
         })
     }
   }
