@@ -83,11 +83,17 @@ export default {
       user: [],
       year: [],
       subject: [],
-      subj: []
+      subj: true
     }
+  },
+  mounted(){
+   console.log(this.allAnswers)
   },
   methods: {
     sendSubject(subj) {
+      console.log('subj',subj)
+      this.displayAnswers = this.allAnswers.filter(e => e.subject == subj)
+      console.log('displayAnsers',this.displayAnswers)
     }
   }
 }

@@ -76,7 +76,6 @@ export default {
   mounted(){
     this.getUsers();
     this.getAnswers();
-    this.selectSubject();
   },
   methods: {
     getUsers(){
@@ -106,7 +105,10 @@ export default {
     },
     selectSubject() {
       console.log('allAnswers',this.allAnswers)
-      console.log('selectedSubject',this.$refs.headNav.subj)
+      console.log('this',this)
+      console.log('$refs',this.$refs)
+      console.log('headNav',this.$refs.headNav)
+      // console.log('selectedSubject',this.$refs.headNav.subj)
       this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
       console.log('displayAnsers',this.displayAnswers)
     },
