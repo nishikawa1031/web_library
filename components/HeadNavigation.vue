@@ -10,9 +10,9 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <v-btn text color="black" @click="sendSubject('民法')">民法</v-btn>
-              <v-btn text color="white" @click="selectSubject(civil_low)">民訴</v-btn>
-              <v-btn text color="white" @click="selectSubject(civil_low)">商法</v-btn>
+              <v-btn text to="/1" color="white">民法</v-btn>
+              <v-btn text to="/2" color="white">民訴</v-btn>
+              <v-btn text to="/3" color="white">商法</v-btn>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -79,7 +79,6 @@ export default {
   asyncData() {
     return {
       allAnswers: [],
-      displayAnswers: [],
       user: [],
       year: [],
       subject: [],
@@ -87,13 +86,15 @@ export default {
     }
   },
   mounted(){
-   console.log(this.allAnswers)
+  },
+  props:{
+    allAnswers: Array
   },
   methods: {
     sendSubject(subj) {
-      console.log('subj',subj)
-      this.displayAnswers = this.allAnswers.filter(e => e.subject == subj)
-      console.log('displayAnsers',this.displayAnswers)
+      console.log(subj)
+      console.log("this.allAnswers",this.allAnswers)
+      this.$emit("changeDisplay",subj);
     }
   }
 }
