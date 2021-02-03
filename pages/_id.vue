@@ -75,7 +75,6 @@ export default {
     'headNav':HeadNavigation,
   },
   mounted(){
-    console.log(this.$route.params)
     this.getUsers();
     this.getAnswers();
   },
@@ -103,16 +102,12 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      this.displayAnswers = this.allAnswers
-    },
-    selectSubject() {
-      console.log('allAnswers',this.allAnswers)
-      console.log('this',this)
-      console.log('$refs',this.$refs)
-      console.log('headNav',this.$refs.headNav)
-      // console.log('selectedSubject',this.$refs.headNav.subj)
-      this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
-      console.log('displayAnsers',this.displayAnswers)
+        setTimeout(() => {
+          console.log(this.allAnswers.length,this.allAnswers)
+          console.log('route',this.$route.params.id)
+          this.displayAnswers = this.allAnswers.filter(e => e.subject == this.$route.params.id)
+          console.log(this.displayAnswers)
+        }, 1000);
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
