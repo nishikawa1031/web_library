@@ -108,12 +108,6 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-        setTimeout(() => {
-          console.log(this.allAnswers,this.allAnswers.length)
-        }, 3000);
-        this.displayAnswers = this.allAnswers
-      // this.displayAnswers = this.allAnswers.filter(e => e.subject == 2)
-        console.log("sss",this.allAnswers.length,this.displayAnswers)
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
