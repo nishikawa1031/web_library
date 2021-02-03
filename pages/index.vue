@@ -108,6 +108,7 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
+      this.allAnswers = this.displayAnswers
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
