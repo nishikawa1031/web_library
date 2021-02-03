@@ -35,7 +35,7 @@
             <v-select
               v-model="answer.subject"
               item-text="name"
-              item-value="name"
+              item-value="code"
               :rules="subjectRules"
               :items="subjects"
               label="科目"
@@ -51,7 +51,7 @@
               dense
             ></v-select>
             <v-text-field
-              v-model="user.content"
+              v-model="answer.content"
               counter="200"
               label="コメント"
               outlined
@@ -115,14 +115,15 @@ export default {
       ],
       answer: {
         year: '',
-        subject: ''
+        subject: '',
+        content:''
       },
       subjects: [
-        { code: '01', name: '民法' },
-        { code: '02', name: '民訴' },
-        { code: '03', name: '商法' },
-        { code: '04', name: '刑法' },
-        { code: '03', name: '刑訴' },
+        { code: 1, name: '民法' },
+        { code: 2, name: '民訴' },
+        { code: 3, name: '商法' },
+        { code: 4, name: '刑法' },
+        { code: 5, name: '刑訴' },
       ],
       years:[
         {name:'2020'},
@@ -171,6 +172,7 @@ export default {
           id: "",
           year: this.answer.year,
           subject: this.answer.subject,
+          content: this.answer.content,
           count: 0,
           like: 0,
           user_id: '',

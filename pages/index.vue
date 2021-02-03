@@ -67,7 +67,14 @@ export default {
   data() {
     return {
       allAnswers:[],
-      displayAnswers: []
+      displayAnswers: [],
+      subjects: [
+        { code: 1, name: '民法' },
+        { code: 2, name: '民訴' },
+        { code: 3, name: '商法' },
+        { code: 4, name: '刑法' },
+        { code: 5, name: '刑訴' },
+    ],
     }
   },
   components: {
@@ -101,16 +108,12 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      this.displayAnswers = this.allAnswers
-    },
-    selectSubject() {
-      console.log('allAnswers',this.allAnswers)
-      console.log('this',this)
-      console.log('$refs',this.$refs)
-      console.log('headNav',this.$refs.headNav)
-      // console.log('selectedSubject',this.$refs.headNav.subj)
-      this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
-      console.log('displayAnsers',this.displayAnswers)
+        setTimeout(() => {
+          console.log(this.allAnswers,this.allAnswers.length)
+        }, 3000);
+        this.displayAnswers = this.allAnswers
+      // this.displayAnswers = this.allAnswers.filter(e => e.subject == 2)
+        console.log("sss",this.allAnswers.length,this.displayAnswers)
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
