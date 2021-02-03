@@ -2,8 +2,7 @@
   <v-layout justify-center>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        2020年(令和2年) 民法
-        <p>sdddd</p>
+        <p>全年度</p>
       </div>
       <ul>
         <li v-for="answer in displayAnswers" :key="answer.id">
