@@ -4,7 +4,7 @@
       <h1 class="SideNavigation-HeaderTitle">
         <nuxt-link :to="localePath('/')" class="SideNavigation-HeaderLink">
           <div class="SideNavigation-HeaderText">
-            {{ $t('civil_law') }}
+            <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{ $t('civil_law') }}</p>
           </div>
         </nuxt-link>
       </h1>

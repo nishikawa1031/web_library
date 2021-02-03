@@ -1,11 +1,24 @@
 <template>
-  <ol class="years">
-    <li v-for="item in years">
+  <v-toolbar-items>
+    <ul>
+      <li>
+    <v-btn text to="/2020" color="white">2020</v-btn>
+    <v-btn text to="/2019" color="white">2019</v-btn>
+    <v-btn text to="/2018" color="white">2018</v-btn>
+    <v-btn text to="/2017" color="white">2017</v-btn>
+    <v-btn text to="/2016" color="white">2016</v-btn>
+    </li>
+    </ul>
+  </v-toolbar-items>
+
+
+  <!-- <ol class="years"> -->
+    <!-- <li v-for="item in years">
         <a href="#">
             {{ exportYear(item) }}
         </a>
-    </li>
-  </ol>
+    </li> -->
+  <!-- </ol> -->
 </template>
 
 <script>
@@ -45,6 +58,13 @@ export default {
 
 
 <style lang="scss" scoped>
+  li {
+    list-style: none;
+    display: list-item;
+  }
+  .card-content {
+    list-style-type: unset;
+  }
   .years {
       list-style-type: none;
       text-align: left;
