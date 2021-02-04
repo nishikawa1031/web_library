@@ -10,9 +10,9 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <v-btn text to="/1" color="white">民法</v-btn>
-              <v-btn text to="/2" color="white">民訴</v-btn>
-              <v-btn text to="/3" color="white">商法</v-btn>
+              <v-btn text color="white" @click="sendSubject(1)">民法</v-btn>
+              <v-btn text color="white" @click="sendSubject(2)">民訴</v-btn>
+              <v-btn text color="white" @click="sendSubject(3)">商法</v-btn>
             </v-list-item-content>
           </v-list-item>
         </v-list>
