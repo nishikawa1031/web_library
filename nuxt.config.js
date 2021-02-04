@@ -55,7 +55,12 @@ export default {
         langDir: 'locales/',
       },
     ],
+    'nuxt-basic-auth-module',
   ],
+  basic: {
+    name: 'lawsei',
+    pass: 'ganbare'
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
