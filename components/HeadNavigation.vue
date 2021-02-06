@@ -79,10 +79,9 @@ export default {
     allAnswers: Array
   },
   methods: {
-    sendSubject(subj) {
-      console.log(subj)
-      console.log("this.allAnswers",this.allAnswers)
-      this.$emit("changeDisplay",subj);
+    sendSubject(selectedSubject) {
+      console.log("this.subjParent1",selectedSubject)
+      this.$emit('get-selected-answers',selectedSubject);
     }
   }
 }

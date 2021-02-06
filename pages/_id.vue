@@ -101,10 +101,7 @@ export default {
           })
         })
         setTimeout(() => {
-          console.log(this.allAnswers.length,this.allAnswers)
-          console.log('route',this.$route.params.id)
           this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
-          console.log(this.displayAnswers)
         }, 1000);
     },
     // 答案の投稿者のuserIDを特定するメソッド

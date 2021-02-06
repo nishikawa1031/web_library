@@ -1,7 +1,9 @@
 <template>
   <v-app class="app">
     <div class="headerContainer">
-      <head-navigation />
+      <head-navigation
+        v-on:get-selected-answers="getSelectedAnswers">
+      </head-navigation>
     </div>
     <div class="appContainer">
       <div class="naviContainer">
@@ -26,6 +28,9 @@ export default {
   mounted() {
   },
   methods: {
+    getSelectedAnswers(selectedSubject){
+      console.log("getSelectedAnswersメソッド",selectedSubject)
+    },
   }
 }
 </script>
