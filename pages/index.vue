@@ -80,6 +80,7 @@ export default {
     'headNav':HeadNavigation,
   },
   mounted(){
+    console.log(this,this.$refs.headNav)
     this.getUsers();
     this.getAnswers();
   },
@@ -96,7 +97,7 @@ export default {
           })
         })
     },
-    getAnswers(){
+    getAnswers(selectedSubject){
       this.allAnswers = []
       firebase
         .firestore()
@@ -107,7 +108,11 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      this.allAnswers = this.displayAnswers
+      if (selectedSubject) {
+        this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
+      } else {
+        this.displayAnswers = this.allAnswers
+      }
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
