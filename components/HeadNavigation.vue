@@ -10,9 +10,9 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <v-btn text color="white" @click="sendSubject(1)">民法</v-btn>
-              <v-btn text color="white" @click="sendSubject(2)">民訴</v-btn>
-              <v-btn text color="white" @click="sendSubject(3)">商法</v-btn>
+              <a :href="'#id=1'">民法</a>
+              <a :href="'#id=2'">民訴</a>
+              <a :href="'#id=3'">商法</a>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -78,11 +78,5 @@ export default {
   props:{
     allAnswers: Array
   },
-  methods: {
-    sendSubject(selectedSubject) {
-      console.log("this.subjParent1",selectedSubject)
-      this.$emit('get-selected-answers',selectedSubject);
-    }
-  }
 }
 </script>
