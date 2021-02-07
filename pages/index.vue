@@ -108,11 +108,7 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      if (selectedSubject) {
-        this.displayAnswers = this.allAnswers.filter(e => e.subject == selectedSubject)
-      } else {
-        this.displayAnswers = this.allAnswers
-      }
+      this.displayAnswers = this.allAnswers
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
