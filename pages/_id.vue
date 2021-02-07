@@ -101,7 +101,11 @@ export default {
           })
         })
         setTimeout(() => {
-          this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
+          if (location.hash) {
+            this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == 2)
+          } else {
+            this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
+          }
         }, 1000);
     },
     // 答案の投稿者のuserIDを特定するメソッド
