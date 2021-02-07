@@ -10,9 +10,9 @@
         <v-list color="blue-grey darken-4">
           <v-list-item>
             <v-list-item-content>
-              <a :href="'#id=1'">民法</a>
-              <a :href="'#id=2'">民訴</a>
-              <a :href="'#id=3'">商法</a>
+              <v-btn text :href="'#id='+ 1" color="white">民法</v-btn>
+              <v-btn text :href="'#id='+ 2" color="white">民訴</v-btn>
+              <v-btn text :href="'#id='+ 3" color="white">商法</v-btn>
             </v-list-item-content>
           </v-list-item>
         </v-list>
