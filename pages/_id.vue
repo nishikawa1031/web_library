@@ -61,12 +61,14 @@
 <script>
 import HeadNavigation from "@/components/HeadNavigation.vue"
 import firebase from '@/plugins/firebase'
+import selectedSubject from "../layouts/default.vue"
 
 export default {
   data() {
     return {
       allAnswers:[],
-      displayAnswers: []
+      displayAnswers: [],
+      selectedSubject: selectedSubject.selectedSubject
     }
   },
   components: {
@@ -76,7 +78,18 @@ export default {
     this.getUsers();
     this.getAnswers();
   },
+  watch: {
+    '$route'(to, from) {
+      this.loadArticle(to)
+    }
+  },
   methods: {
+    loadArticle(to) {
+      console.log("ddd",this.$route.params.id,to.hash);
+      const urlHash = to.hash;
+      const urlNumber = urlHash.replace(/[^0-9]/g, '')
+      this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == urlNumber)
+    },
     getUsers(){
       this.allUsers = []
       firebase
@@ -100,13 +113,15 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-        setTimeout(() => {
-          if (location.hash) {
-            this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == 2)
-          } else {
-            this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
-          }
-        }, 1000);
+      const urlHash = location.hash;
+      const urlNumber = urlHash.replace(/[^0-9]/g, '')
+      setTimeout(() => {
+        if (location.hash) {
+          this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == urlNumber)
+        } else {
+          this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
+        }
+      }, 1000);
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
