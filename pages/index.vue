@@ -11,37 +11,27 @@
             max-width="500"
             outlined
           >
-            <v-col cols="12" sm="8" md="6">
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="overline mb-4">OVERLINE</div>
+                <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
+                <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+              </v-list-item-content>
+
               <v-list-item-avatar
                 tile
                 size="80"
                 color="grey"
-              >
-                <!-- <img :src="user.icon"/> -->
-              </v-list-item-avatar>
-            </v-col>
-            <v-card-title>
-              {{ findContributor(answer.id).name }}
-            </v-card-title>
-            <v-col cols="12" sm="8" md="6">
-              <v-list-item-content>
-                <div class="overline mb-4"></div>
-                <v-list-item-title class="headline mb-1">
-                  <!-- {{ user.name }} -->
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                    科目：{{ answer.subject }}
-                  <br>
-                    年度：{{ answer.year }}
-                    {{ answer.like }}
-                    {{ answer.count }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-col>
+              ></v-list-item-avatar>
+            </v-list-item>
+
+            <v-card-actions>
+              <v-btn text>Button</v-btn>
+              <v-btn text>Button</v-btn>
+            </v-card-actions>
           </v-card>
         </li>
       </ul>
-      <Article />
     </v-col>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
@@ -83,8 +73,12 @@ export default {
     console.log(this,this.$refs.headNav)
     this.getUsers();
     this.getAnswers();
+    this.send();
   },
   methods: {
+    send(){
+      this.$emit("my-click",this.displayAnswers)
+    },
     getUsers(){
       this.allUsers = []
       firebase
@@ -97,7 +91,7 @@ export default {
           })
         })
     },
-    getAnswers(selectedSubject){
+    getAnswers(){
       this.allAnswers = []
       firebase
         .firestore()
@@ -108,7 +102,14 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      this.displayAnswers = this.allAnswers
+        setTimeout(() => {
+          this.displayAnswers = this.allAnswers
+          const data = this.displayAnswers
+          console.log(data)
+          data.forEach((value) => {
+          　console.log("ddd",value);
+          });
+        }, 1000);
     },
     // 答案の投稿者のuserIDを特定するメソッド
     findContributor(answerId){
