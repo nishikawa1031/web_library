@@ -14,7 +14,9 @@
               <v-list-item-avatar
                 size="80"
                 color="grey"
-              ></v-list-item-avatar>
+              >
+                <!-- <img :src="user.icon"/> -->
+              </v-list-item-avatar>
               <v-list-item-content>
                 <!-- <div class="overline mb-4">OVERLINE</div> -->
                 <v-list-item-title class="headline mb-1">{{findContributor(answer)}}</v-list-item-title>
