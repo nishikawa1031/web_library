@@ -29,7 +29,7 @@
                   @click.stop="dialog = true"
                   @click="passID(user);"
                 >
-                  詳細を見る
+                  答案を見る
                 </v-btn>
               </v-card-actions>
             </v-list-item>
