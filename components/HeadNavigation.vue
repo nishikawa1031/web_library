@@ -57,7 +57,6 @@
         </v-list>
       </v-menu>
       <v-spacer></v-spacer>
-      <v-btn text to="/contributors" color="white">{{ $t('contributor') }}</v-btn>
     </v-toolbar-items>
   </v-app-bar>
 </template>

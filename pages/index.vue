@@ -5,27 +5,54 @@
         <p>全年度</p>
       </div>
       <ul>
-        <li v-for="answer in displayAnswers" :key="answer.id">
+        <li v-for="user in displayUsers" :key="user.id">
           <v-card
             class="mx-auto"
+            max-width="500"
             outlined
           >
-            <v-list-item three-line>
+            <v-list-item>
+              <v-col cols="12" sm="8" md="6">
               <v-list-item-avatar
+                tile
                 size="80"
                 color="grey"
-              ></v-list-item-avatar>
+              >
+                <img :src="user.icon"/>
+              </v-list-item-avatar>
+              <v-card-actions>
+                <v-layout justify-center>
+                  <v-btn
+                    color="primary"
+                    dark
+                    @click.stop="dialog = true"
+                    @click="passID(user);"
+                  >
+                    詳細を見る
+                  </v-btn>
+                </v-layout>
+              </v-card-actions>
+              </v-col>
+              <v-col cols="12" sm="8" md="6">
               <v-list-item-content>
-                <!-- <div class="overline mb-4">OVERLINE</div> -->
-                <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
-                <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+                <div class="overline mb-4"></div>
+                <v-list-item-title class="headline mb-1">
+                  {{ user.name }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                    学歴：{{ user.from }}
+                  <br>
+                    司法試験の結果：{{ user.exam }}
+                  <br>
+                    予備試験の結果：{{ user.pre }}
+                  <br>
+                    予備校：{{ user.school }}
+                  <br>
+                    コメント：{{ user.comment }}
+                </v-list-item-subtitle>
               </v-list-item-content>
+              </v-col>
             </v-list-item>
-
-            <v-card-actions>
-              <!-- <v-btn text>Button</v-btn>
-              <v-btn text>Button</v-btn> -->
-            </v-card-actions>
           </v-card>
         </li>
       </ul>
@@ -52,6 +79,7 @@ import firebase from '@/plugins/firebase'
 export default {
   data() {
     return {
+      displayUsers:[],
       allAnswers:[],
       displayAnswers: [],
       subjects: [
@@ -67,15 +95,9 @@ export default {
     'headNav':HeadNavigation,
   },
   mounted(){
-    console.log(this,this.$refs.headNav)
     this.getUsers();
-    this.getAnswers();
-    this.send();
   },
   methods: {
-    send(){
-      this.$emit("my-click",this.displayAnswers)
-    },
     getUsers(){
       this.allUsers = []
       firebase
@@ -87,31 +109,7 @@ export default {
             this.allUsers.push(doc.data())
           })
         })
-    },
-    getAnswers(){
-      this.allAnswers = []
-      firebase
-        .firestore()
-        .collection('answers')
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            this.allAnswers.push(doc.data())
-          })
-        })
-        setTimeout(() => {
-          this.displayAnswers = this.allAnswers
-          const data = this.displayAnswers
-          console.log(data)
-          data.forEach((value) => {
-          　console.log("ddd",value);
-          });
-        }, 1000);
-    },
-    // 答案の投稿者のuserIDを特定するメソッド
-    findContributor(answerId){
-      this.contributor = this.allUsers.filter(e => e.answer_id == answerId)
-      return this.contributor
+      this.displayUsers = this.allUsers
     }
   }
 }
