@@ -12,9 +12,9 @@
           <v-list color="blue-grey darken-4">
             <v-list-item>
               <v-list-item-content>
-                <v-btn text :href="'#id='+ 1" color="white">民法</v-btn>
-                <v-btn text :href="'#id='+ 2" color="white">民訴</v-btn>
-                <v-btn text :href="'#id='+ 3" color="white">商法</v-btn>
+                <v-btn text :href="'#id='+ 0" color="white">民法</v-btn>
+                <v-btn text :href="'#id='+ 1" color="white">民訴</v-btn>
+                <v-btn text :href="'#id='+ 2" color="white">商法</v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -26,8 +26,8 @@
           <v-list color="blue-grey darken-4">
             <v-list-item>
               <v-list-item-content>
-                <v-btn text :href="'#id='+ 4" color="white">刑法</v-btn>
-                <v-btn text :href="'#id='+ 5" color="white">刑訴法</v-btn>
+                <v-btn text :href="'#id='+ 3" color="white">刑法</v-btn>
+                <v-btn text :href="'#id='+ 4" color="white">刑訴法</v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -39,8 +39,8 @@
           <v-list color="blue-grey darken-4">
             <v-list-item>
               <v-list-item-content>
-                <v-btn text :href="'#id='+ 6" color="white">憲法法</v-btn>
-                <v-btn text :href="'#id='+ 7" color="white">行政法</v-btn>
+                <v-btn text :href="'#id='+ 5" color="white">憲法法</v-btn>
+                <v-btn text :href="'#id='+ 6" color="white">行政法</v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -52,8 +52,8 @@
           <v-list color="blue-grey darken-4">
             <v-list-item>
               <v-list-item-content>
-                <v-btn text :href="'#id='+ 8" color="white">倒産法</v-btn>
-                <v-btn text :href="'#id='+ 9" color="white">労働法</v-btn>
+                <v-btn text :href="'#id='+ 7" color="white">倒産法</v-btn>
+                <v-btn text :href="'#id='+ 8" color="white">労働法</v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-list>
