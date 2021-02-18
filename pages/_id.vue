@@ -18,7 +18,7 @@
               <v-list-item-content>
                 <!-- <div class="overline mb-4">OVERLINE</div> -->
                 <v-list-item-title class="headline mb-1">{{findContributor(answer)}}</v-list-item-title>
-                <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+                <v-list-item-subtitle>{{answer.subject}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
@@ -120,13 +120,7 @@ export default {
       return this.contributor
     },
     showSubject(){
-      setTimeout(() => {
-        if(location.hash){
-
-        } else {
-          return "全科目"
-        }
-      }, 1000);
+      return "ddd"
     }
   }
 }
