@@ -196,7 +196,6 @@ export default {
           // error
           })
           alert('送信しました')
-           this.$router.push({path:'/'})
         })
     },
     upload (p) {
