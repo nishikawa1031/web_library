@@ -1,24 +1,22 @@
 <template>
   <v-toolbar-items>
     <ul>
-      <li>
-        <v-btn text to="/2020" color="white">2020</v-btn>
-        <v-btn text to="/2019" color="white">2019</v-btn>
-        <v-btn text to="/2018" color="white">2018</v-btn>
-        <v-btn text to="/2017" color="white">2017</v-btn>
-        <v-btn text to="/2016" color="white">2016</v-btn>
+      <li v-for="item in years" :key="item">
+        <v-btn text :to="'/'+ item" color="white">
+            {{ exportYear(item) }}
+        </v-btn>
       </li>
     </ul>
   </v-toolbar-items>
 
 
-  <!-- <ol class="years"> -->
-    <!-- <li v-for="item in years">
+  <!-- <ol class="years">
+    <li v-for="item in years">
         <a href="#">
             {{ exportYear(item) }}
         </a>
-    </li> -->
-  <!-- </ol> -->
+    </li>
+  </ol> -->
 </template>
 
 <script>
@@ -27,25 +25,35 @@ export default {
     return {
         // 存在するページの西暦を入れた配列
         years: [
-            1995,
-            1996,
-            1997,
-            1998,
-            1999,
-            2000,
-            2001,
-            2002,
-            2003,
-            2004,
+            2020,
+            2019,
+            2018,
+            2017,
+            2016,
+            2015,
+            2014,
+            2013,
+            2012,
+            2011,
+            2010,
+            2009,
+            2008,
+            2007,
+            2006,
             2005,
+            2004,
+            2003,
+            2002,
+            2001,
+            2000
         ]
     };
   },
-
   methods: {
     // 引数で西暦を受け取り、
     // 2000年（平成12年）の形式の文字列にして返す
     exportYear: function (year) {
+      console.log("year",year)
         const date = new Date(year, 3, 1);
         const options = {era: 'long'};
         const jaEra = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', options).format(date);
