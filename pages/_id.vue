@@ -2,7 +2,7 @@
   <v-layout justify-center>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        <p>{{this.$route.params.id}}年度</p>
+        <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{showSubject()}}</p>
       </div>
       <ul>
         <li v-for="answer in displayAnswers" :key="answer.id">
@@ -48,14 +48,13 @@
 <script>
 import HeadNavigation from "@/components/HeadNavigation.vue"
 import firebase from '@/plugins/firebase'
-import selectedSubject from "../layouts/default.vue"
 
 export default {
   data() {
     return {
       allAnswers:[],
       displayAnswers: [],
-      selectedSubject: selectedSubject.selectedSubject
+      urlNumber: '',
     }
   },
   components: {
@@ -64,6 +63,7 @@ export default {
   mounted(){
     this.getUsers();
     this.getAnswers();
+    this.urlNumber = location.hash.replace(/[^0-9]/g, '')
   },
   watch: {
     '$route'(to, from) {
@@ -73,9 +73,8 @@ export default {
   methods: {
     loadArticle(to) {
       console.log("ddd",this.$route.params.id,to.hash);
-      const urlHash = to.hash;
-      const urlNumber = urlHash.replace(/[^0-9]/g, '')
-      this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == urlNumber)
+      this.urlNumber = to.hash.replace(/[^0-9]/g, '')
+      this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == this.urlNumber)
     },
     getUsers(){
       this.allUsers = []
@@ -100,11 +99,9 @@ export default {
             this.allAnswers.push(doc.data())
           })
         })
-      const urlHash = location.hash;
-      const urlNumber = urlHash.replace(/[^0-9]/g, '')
       setTimeout(() => {
         if (location.hash) {
-          this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == urlNumber)
+          this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == this.urlNumber)
         } else {
           this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id)
         }
@@ -121,6 +118,15 @@ export default {
       this.contributor = this.allUsers.filter(e => e.id == userId)[0].name
       console.log("this.contributor",this.contributor)
       return this.contributor
+    },
+    showSubject(){
+      setTimeout(() => {
+        if(location.hash){
+
+        } else {
+          return "全科目"
+        }
+      }, 1000);
     }
   }
 }

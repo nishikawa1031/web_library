@@ -2,7 +2,6 @@
   <v-layout justify-center>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        <p>全年度</p>
       </div>
       <ul>
         <li v-for="user in displayUsers" :key="user.id">
