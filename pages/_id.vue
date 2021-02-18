@@ -22,12 +22,17 @@
                 <v-list-item-title class="headline mb-1">{{findContributor(answer)}}</v-list-item-title>
                 <v-list-item-subtitle>{{displaySubject(answer.subject)}}</v-list-item-subtitle>
               </v-list-item-content>
+              <v-card-actions>
+                <v-btn
+                  color="primary"
+                  dark
+                  @click.stop="dialog = true"
+                  @click="passID(user);"
+                >
+                  詳細を見る
+                </v-btn>
+              </v-card-actions>
             </v-list-item>
-
-            <v-card-actions>
-              <!-- <v-btn text>Button</v-btn>
-              <v-btn text>Button</v-btn> -->
-            </v-card-actions>
           </v-card>
         </li>
       </ul>

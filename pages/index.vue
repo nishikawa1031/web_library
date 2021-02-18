@@ -22,16 +22,14 @@
                 <v-list-item-subtitle>コメント：{{ user.comment }}</v-list-item-subtitle>
               </v-list-item-content>
               <v-card-actions>
-                <v-layout justify-center>
-                  <v-btn
-                    color="primary"
-                    dark
-                    @click.stop="dialog = true"
-                    @click="passID(user);"
-                  >
-                    詳細を見る
-                  </v-btn>
-                </v-layout>
+                <v-btn
+                  color="primary"
+                  dark
+                  @click.stop="dialog = true"
+                  @click="passID(user);"
+                >
+                  詳細を見る
+                </v-btn>
               </v-card-actions>
             </v-list-item>
           </v-card>
