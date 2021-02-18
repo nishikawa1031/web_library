@@ -138,7 +138,6 @@ export default {
       return subjectName
     },
     displaySubject(id){
-      console.log("id",id)
       return this.subjects[id].name
     }
   }
