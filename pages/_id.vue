@@ -18,7 +18,7 @@
               <v-list-item-content>
                 <!-- <div class="overline mb-4">OVERLINE</div> -->
                 <v-list-item-title class="headline mb-1">{{findContributor(answer)}}</v-list-item-title>
-                <v-list-item-subtitle>{{displaySubject(answer.year)}}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{displaySubject(answer.subject)}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
@@ -77,7 +77,7 @@ export default {
     'headNav':HeadNavigation,
   },
   mounted(){
-    console.log(this.subjects[3])
+    console.log(this.subjects[3],this.subjects[3].name)
     this.getUsers();
     this.getAnswers();
     this.urlNumber = location.hash.replace(/[^0-9]/g, '')
@@ -138,7 +138,8 @@ export default {
       return subjectName
     },
     displaySubject(id){
-      return this.subjects[id]
+      console.log("id",id)
+      return this.subjects[id].name
     }
   }
 }
