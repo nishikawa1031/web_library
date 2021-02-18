@@ -79,7 +79,6 @@ export default {
   },
   watch: {
     '$route'(to, from) {
-      console.log("aaa",to.path)
       if (to.path.replace(/[^0-9]/g, '')) {
         this.isTopPage = false
       } else {
