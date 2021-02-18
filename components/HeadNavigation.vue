@@ -39,8 +39,8 @@
           <v-list color="blue-grey darken-4">
             <v-list-item>
               <v-list-item-content>
-                <v-btn text :href="'#id='+ 6" color="white">行政法</v-btn>
-                <v-btn text :href="'#id='+ 7" color="white">憲法</v-btn>
+                <v-btn text :href="'#id='+ 6" color="white">憲法法</v-btn>
+                <v-btn text :href="'#id='+ 7" color="white">行政法</v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-list>

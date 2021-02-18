@@ -124,6 +124,10 @@ export default {
         { code: 3, name: '商法' },
         { code: 4, name: '刑法' },
         { code: 5, name: '刑訴' },
+        { code: 6, name: '憲法'},
+        { code: 7, name: '行政法'},
+        { code: 8, name: '倒産法'},
+        { code: 9, name: '労働法'},
       ],
       years:[
         {name:'2020'},

@@ -55,6 +55,22 @@ export default {
       allAnswers:[],
       displayAnswers: [],
       urlNumber: '',
+      subjects: [
+        { code: 1, name: '民法'},
+        { code: 2, name: '民訴'},
+        { code: 3, name: '商法'},
+        { code: 4, name: '刑法'},
+        { code: 5, name: '刑訴'},
+        { code: 6, name: '憲法'},
+        { code: 7, name: '行政法'},
+        { code: 8, name: '倒産法'},
+        { code: 9, name: '労働法'},
+        { code: 10, name: '民法'},
+        { code: 11, name: '民法'},
+        { code: 12, name: '民法'},
+        { code: 13, name: '民法'},
+        { code: 14, name: '民法'},
+      ]
     }
   },
   components: {
