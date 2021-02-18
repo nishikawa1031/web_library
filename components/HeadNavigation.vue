@@ -3,60 +3,61 @@
     <v-toolbar-items>
       <v-btn text to="/" color="white">{{ $t('title') }}</v-btn>
       <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
-      <v-menu offset-y>
-        <template v-slot:activator="{on}">
-          <v-btn v-on="on" text color="white">民事系</v-btn>
-        </template>
-        <v-list color="blue-grey darken-4">
-          <v-list-item>
-            <v-list-item-content>
-              <v-btn text :href="'#id='+ 1" color="white">民法</v-btn>
-              <v-btn text :href="'#id='+ 2" color="white">民訴</v-btn>
-              <v-btn text :href="'#id='+ 3" color="white">商法</v-btn>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu offset-y>
-        <template v-slot:activator="{on}">
-          <v-btn v-on="on" text color="white">刑事系</v-btn>
-        </template>
-        <v-list color="blue-grey darken-4">
-          <v-list-item>
-            <v-list-item-content>
-              <v-btn text :href="'#id='+ 4" color="white">刑法</v-btn>
-              <v-btn text :href="'#id='+ 5" color="white">刑訴法</v-btn>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu offset-y>
-        <template v-slot:activator="{on}">
-          <v-btn v-on="on" text color="white">公法系</v-btn>
-        </template>
-        <v-list color="blue-grey darken-4">
-          <v-list-item>
-            <v-list-item-content>
-              <v-btn text :href="'#id='+ 6" color="white">行政法</v-btn>
-              <v-btn text :href="'#id='+ 7" color="white">憲法</v-btn>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-menu offset-y>
-        <template v-slot:activator="{on}">
-          <v-btn v-on="on" text color="white">選択科目</v-btn>
-        </template>
-        <v-list color="blue-grey darken-4">
-          <v-list-item>
-            <v-list-item-content>
-              <v-btn text :href="'#id='+ 8" color="white">倒産法</v-btn>
-              <v-btn text :href="'#id='+ 9" color="white">労働法</v-btn>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-spacer></v-spacer>
+    </v-toolbar-items>
+    <v-toolbar-items v-if="!isTopPage">
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text color="white">民事系</v-btn>
+          </template>
+          <v-list color="blue-grey darken-4">
+            <v-list-item>
+              <v-list-item-content>
+                <v-btn text :href="'#id='+ 1" color="white">民法</v-btn>
+                <v-btn text :href="'#id='+ 2" color="white">民訴</v-btn>
+                <v-btn text :href="'#id='+ 3" color="white">商法</v-btn>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text color="white">刑事系</v-btn>
+          </template>
+          <v-list color="blue-grey darken-4">
+            <v-list-item>
+              <v-list-item-content>
+                <v-btn text :href="'#id='+ 4" color="white">刑法</v-btn>
+                <v-btn text :href="'#id='+ 5" color="white">刑訴法</v-btn>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text color="white">公法系</v-btn>
+          </template>
+          <v-list color="blue-grey darken-4">
+            <v-list-item>
+              <v-list-item-content>
+                <v-btn text :href="'#id='+ 6" color="white">行政法</v-btn>
+                <v-btn text :href="'#id='+ 7" color="white">憲法</v-btn>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text color="white">選択科目</v-btn>
+          </template>
+          <v-list color="blue-grey darken-4">
+            <v-list-item>
+              <v-list-item-content>
+                <v-btn text :href="'#id='+ 8" color="white">倒産法</v-btn>
+                <v-btn text :href="'#id='+ 9" color="white">労働法</v-btn>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
     </v-toolbar-items>
   </v-app-bar>
 </template>
@@ -69,7 +70,21 @@ export default {
       user: [],
       year: [],
       subject: [],
-      subj: true
+    }
+  },
+  data() {
+    return {
+      isTopPage: true,
+    }
+  },
+  watch: {
+    '$route'(to, from) {
+      console.log("aaa",to.path)
+      if (to.path.replace(/[^0-9]/g, '')) {
+        this.isTopPage = false
+      } else {
+        this.isTopPage = true
+      }
     }
   },
   mounted(){

@@ -53,7 +53,6 @@ export default {
     // 引数で西暦を受け取り、
     // 2000年（平成12年）の形式の文字列にして返す
     exportYear: function (year) {
-      console.log("year",year)
         const date = new Date(year, 3, 1);
         const options = {era: 'long'};
         const jaEra = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', options).format(date);

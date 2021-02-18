@@ -72,7 +72,6 @@ export default {
   },
   methods: {
     loadArticle(to) {
-      console.log("ddd",this.$route.params.id,to.hash);
       this.urlNumber = to.hash.replace(/[^0-9]/g, '')
       this.displayAnswers = this.allAnswers.filter(e => e.year == this.$route.params.id).filter(e => e.subject == this.urlNumber)
     },
