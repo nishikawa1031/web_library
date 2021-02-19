@@ -185,6 +185,7 @@ export default {
           count: 0,
           like: 0,
           user_id: '',
+          imgUrl: '',
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(docRef => {
@@ -206,8 +207,8 @@ export default {
             // アップロードした画像のURLを取得
             firebase.storage().ref('users/' + file.name).getDownloadURL().then((url) => {
                 // アップロードした画像のURLと画像名をDBに保存
-                this.icon = url
-                console.log(this.icon)
+                this.imgUrl = url
+                console.log(this.imgUrl)
             }).catch((error) => {
                 console.log(error)
             })
