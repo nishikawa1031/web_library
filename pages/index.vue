@@ -28,7 +28,7 @@
                   color="primary"
                   dark
                   @click.stop="dialog = true"
-                  @click="passID(user);"
+                  @click="passUserID(user.id);"
                 >
                   答案を見る
                 </v-btn>
@@ -43,17 +43,18 @@
         sm="6"
         md="8"
       >
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia <br>
-          deserunt mollit anim id est laborum.Thanks for reading.</p>
-        </v-card>
+        <ul>
+          <li v-for="answer in displaySelectedAnswers" :key="answer.id">
+            <v-card
+              class="pa-2"
+              outlined
+              tile
+            >
+              {{ answer.year }}年度<br>{{displaySubject(answer)}}
+              <iframe :src="selectedAnswer" width="80%"/>
+            </v-card>
+          </li>
+        </ul>
       </v-col>
     </v-row>
   </v-container>
@@ -68,14 +69,25 @@ export default {
     return {
       displayUsers:[],
       allAnswers:[],
-      displayAnswers: [],
       subjects: [
-        { code: 1, name: '民法' },
-        { code: 2, name: '民訴' },
-        { code: 3, name: '商法' },
-        { code: 4, name: '刑法' },
-        { code: 5, name: '刑訴' },
-    ],
+        { code: 0, name: '民法'},
+        { code: 1, name: '民訴'},
+        { code: 2, name: '商法'},
+        { code: 3, name: '刑法'},
+        { code: 4, name: '刑訴'},
+        { code: 5, name: '憲法'},
+        { code: 6, name: '行政法'},
+        { code: 7, name: '倒産法'},
+        { code: 8, name: '労働法'},
+        { code: 9, name: '民法'},
+        { code: 10, name: '民法'},
+        { code: 11, name: '民法'},
+        { code: 12, name: '民法'},
+        { code: 13, name: '民法'},
+      ],
+      isShowUserAnswers: false,
+      displaySelectedAnswers: [],
+      selectedAnswer: ''
     }
   },
   components: {
@@ -97,7 +109,28 @@ export default {
           })
         })
       this.displayUsers = this.allUsers
-    }
+    },
+    passUserID(userId){
+      this.isShowUserAnswers = true;
+      this.allAnswers = []
+      firebase
+        .firestore()
+        .collection('answers')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            this.allAnswers.push(doc.data())
+          })
+        })
+      setTimeout(() => {
+        this.displaySelectedAnswers = this.allAnswers.filter(e => e.user_id == userId)
+        console.log("test",this.allAnswers,userId,this.displaySelectedAnswers)
+      }, 1000);
+    },
+    displaySubject(answer){
+      this.selectedAnswer = answer.imgUrl
+      return this.subjects[answer.subject].name
+    },
   }
 }
 </script>

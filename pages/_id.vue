@@ -28,7 +28,7 @@
                   color="primary"
                   dark
                   @click.stop="dialog = true"
-                  @click="passID(answer.imgUrl);"
+                  @click="passAnswerId(answer.imgUrl);"
                 >
                   答案を見る
                 </v-btn>
@@ -52,7 +52,7 @@
                   color="primary"
                   dark
                   @click.stop="dialog = true"
-                  @click="passID(answer.imgUrl);"
+                  @click="passAnswerId(answer.imgUrl);"
                 >
                   全画面表示
                 </v-btn>
@@ -154,14 +154,10 @@ export default {
       this.contributor = this.allUsers.filter(e => e.id == userId)[0].name
       return this.contributor
     },
-    showSubject(){
-      const subjectName = this.urlNumber ? this.subjects[this.urlNumber].name : '' ;
-      return subjectName
-    },
     displaySubject(id){
       return this.subjects[id].name
     },
-    passID(url){
+    passAnswerId(url){
       this.isShowAnswer = true
       this.selectedAnswer = url
     },
