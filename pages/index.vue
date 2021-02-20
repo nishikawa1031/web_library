@@ -50,8 +50,25 @@
               outlined
               tile
             >
-              {{ answer.year }}年度<br>{{displaySubject(answer)}}
+            <v-list-item three-line>
+              <v-list-item-content>
+                <v-list-item-title class="headline mb-1">{{ answer.year }}年度&nbsp;{{displaySubject(answer)}}</v-list-item-title>
+                <v-list-item-subtitle>
+                <v-layout justify-center>
+
+                <v-btn
+                  color="primary"
+                  dark
+                  @click.stop="dialog = true"
+                  @click="passUserID(user.id);"
+                >
+                  全画面表示
+                </v-btn>
+                </v-layout>
+                </v-list-item-subtitle>
               <iframe :src="selectedAnswer" width="80%"/>
+              </v-list-item-content>
+            </v-list-item>
             </v-card>
           </li>
         </ul>
@@ -124,7 +141,6 @@ export default {
         })
       setTimeout(() => {
         this.displaySelectedAnswers = this.allAnswers.filter(e => e.user_id == userId)
-        console.log("test",this.allAnswers,userId,this.displaySelectedAnswers)
       }, 1000);
     },
     displaySubject(answer){
