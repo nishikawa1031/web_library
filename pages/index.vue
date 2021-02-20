@@ -1,8 +1,10 @@
 <template>
-  <v-layout justify-center>
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-      </div>
+  <v-container>
+    <v-row no-gutters>
+      <v-col
+        cols="6"
+        md="4"
+      >
       <ul>
         <li v-for="user in displayUsers" :key="user.id">
           <v-card
@@ -35,20 +37,26 @@
           </v-card>
         </li>
       </ul>
-    </v-col>
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        答案
-      </div>
-      <v-card>
-        <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia <br>
-        deserunt mollit anim id est laborum.Thanks for reading.</p>
-      </v-card>
-    </v-col>
-  </v-layout>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="8"
+      >
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+          <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
+          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia <br>
+          deserunt mollit anim id est laborum.Thanks for reading.</p>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

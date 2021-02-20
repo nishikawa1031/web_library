@@ -1,9 +1,10 @@
 <template>
-  <v-layout justify-center>
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{showSubject()}}</p>
-      </div>
+  <v-container>
+    <v-row no-gutters>
+      <v-col
+        cols="6"
+        md="4"
+      >
       <ul>
         <li v-for="answer in displayAnswers" :key="answer.id">
           <v-card
@@ -36,16 +37,32 @@
           </v-card>
         </li>
       </ul>
-    </v-col>
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center" >
-        答案
-      </div>
-      <v-card v-if="isShowAnswer">
-          <iframe :src="selectedAnswer" width="100%" height="100%"/>
-      </v-card>
-    </v-col>
-  </v-layout>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="8"
+      >
+        <v-card
+          min-height="80vh"
+          v-if="isShowAnswer">
+            <v-layout justify-center>
+              <v-card-actions>
+                <v-btn
+                  color="primary"
+                  dark
+                  @click.stop="dialog = true"
+                  @click="passID(answer.imgUrl);"
+                >
+                  全画面表示
+                </v-btn>
+              </v-card-actions>
+            </v-layout>
+            <iframe :src="selectedAnswer" width="100%" height="600"/>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -82,7 +99,6 @@ export default {
     'headNav':HeadNavigation,
   },
   mounted(){
-    console.log(this.subjects[3],this.subjects[3].name)
     this.getUsers();
     this.getAnswers();
     this.urlNumber = location.hash.replace(/[^0-9]/g, '')
@@ -146,7 +162,7 @@ export default {
       return this.subjects[id].name
     },
     passID(url){
-      this.isShowAnswer = !this.isShowAnswer
+      this.isShowAnswer = true
       this.selectedAnswer = url
     },
     passImgUrl(){}

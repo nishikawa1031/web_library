@@ -3,7 +3,10 @@
     <header class="SideNavigation-Header">
       <h1 class="SideNavigation-HeaderTitle">
         <nuxt-link :to="localePath('/')" class="SideNavigation-HeaderLink">
-          <div class="SideNavigation-HeaderText">
+          <div class="SideNavigation-HeaderText" v-if="this.$route.params.id">
+            <div class="text-center">
+              <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{showSubject()}}</p>
+            </div>
           </div>
         </nuxt-link>
       </h1>
@@ -19,6 +22,44 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      urlNumber: '',
+      subjects: [
+        { code: 0, name: '民法'},
+        { code: 1, name: '民訴'},
+        { code: 2, name: '商法'},
+        { code: 3, name: '刑法'},
+        { code: 4, name: '刑訴'},
+        { code: 5, name: '憲法'},
+        { code: 6, name: '行政法'},
+        { code: 7, name: '倒産法'},
+        { code: 8, name: '労働法'},
+        { code: 9, name: '民法'},
+        { code: 10, name: '民法'},
+        { code: 11, name: '民法'},
+        { code: 12, name: '民法'},
+        { code: 13, name: '民法'},
+      ],
+    }
+  },
+  mounted(){
+    this.urlNumber = location.hash.replace(/[^0-9]/g, '')
+  },
+  watch: {
+    '$route'(to, from) {
+      this.loadArticle(to)
+    }
+  },
+  methods: {
+    loadArticle(to) {
+      this.urlNumber = to.hash.replace(/[^0-9]/g, '')
+    },
+    showSubject(){
+      const subjectName = this.urlNumber ? this.subjects[this.urlNumber].name : '' ;
+      return subjectName
+    },
+  }
 }
 </script>
 
@@ -35,10 +76,8 @@ export default {
 
 .SideNavigation-Header {
   height: 64px;
-  padding-left: 52px;
   @include largerThan($small) {
     height: auto;
-    padding: 20px;
   }
   @include lessThan($small) {
     display: flex;
@@ -130,6 +169,7 @@ export default {
 
 .SideNavigation-HeaderText {
   margin: 10px 0 0 0;
+  color: $gray-1;
   @include lessThan($small) {
     margin: 0 0 0 10px;
   }

@@ -77,6 +77,14 @@ export default {
       isTopPage: true,
     }
   },
+  mounted(){
+    console.log("ddd",location.pathname.replace(/[^0-9]/g, ''))
+    if (location.pathname.replace(/[^0-9]/g, '')) {
+      this.isTopPage = false;
+    } else {
+      this.isTopPage = true;
+    }
+  },
   watch: {
     '$route'(to, from) {
       if (to.path.replace(/[^0-9]/g, '')) {
