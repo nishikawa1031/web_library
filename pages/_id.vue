@@ -27,7 +27,7 @@
                   color="primary"
                   dark
                   @click.stop="dialog = true"
-                  @click="passID(user);"
+                  @click="passID(answer.imgUrl);"
                 >
                   答案を見る
                 </v-btn>
@@ -38,10 +38,17 @@
       </ul>
     </v-col>
     <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
+      <div class="text-center" >
         答案
       </div>
-      <v-card>
+      <v-card v-if="isShowAnswer">
+        <v-list-item-avatar
+          tile
+          size="80"
+          color="grey"
+        >
+          <img :src="selectedAnswer"/>
+        </v-list-item-avatar>
         <p>Hey everyone.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse <br>
@@ -77,7 +84,9 @@ export default {
         { code: 11, name: '民法'},
         { code: 12, name: '民法'},
         { code: 13, name: '民法'},
-      ]
+      ],
+      isShowAnswer: false,
+      selectedAnswer: '',
     }
   },
   components: {
@@ -146,7 +155,12 @@ export default {
     },
     displaySubject(id){
       return this.subjects[id].name
-    }
+    },
+    passID(url){
+      this.isShowAnswer = !this.isShowAnswer
+      this.selectedAnswer = url
+    },
+    passImgUrl(){}
   }
 }
 </script>

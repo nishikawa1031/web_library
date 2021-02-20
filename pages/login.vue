@@ -185,7 +185,7 @@ export default {
           count: 0,
           like: 0,
           user_id: '',
-          imgUrl: '',
+          imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(docRef => {
