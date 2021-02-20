@@ -1,13 +1,16 @@
 <template>
-  <small class="SideNavigation-Copyright">
-    <v-row><v-btn small text to="/about" color="white">About Us</v-btn></v-row>
-  </small>
+  <v-layout justify-center>
+    <small class="SideNavigation-Copyright">
+      <v-btn small text to="/about" color="black">About Us</v-btn>
+    </small>
+  </v-layout>
 </template>
 
 <style lang="scss" scoped>
 .SideNavigation-Copyright {
   display: block;
-  margin-top: 15px;
+  margin-top: 5px;
+  margin-bottom: 25px;
   color: $gray-1;
   line-height: 1.3;
   font-weight: bold;
