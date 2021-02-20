@@ -140,7 +140,7 @@ export default {
 }
 
 .SideNavigation-Body {
-  padding: 0 20px 20px;
+  padding: 0 0px 5px;
   @include lessThan($small) {
     display: none;
     padding: 0 36px 36px;

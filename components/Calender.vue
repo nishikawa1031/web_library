@@ -2,7 +2,7 @@
   <v-toolbar-items>
     <ul>
       <li v-for="item in years" :key="item">
-        <v-btn text :to="'/'+ item" color="white">
+        <v-btn text :to="'/'+ item" color="black">
             {{ exportYear(item) }}
         </v-btn>
       </li>

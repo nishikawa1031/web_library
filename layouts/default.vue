@@ -55,7 +55,7 @@ export default {
 }
 .naviContainer {
   position: relative;
-  background-color: $gray-1;
+  background-color: $gray-5;
 }
 @include lessThan($small) {
   .naviContainer {
@@ -71,7 +71,7 @@ export default {
     position: relative;
     top: 0;
     overflow-y: auto;
-    width: 240px;
+    width: 220px;
     height: 100%;
     border-right: 1px solid $gray-4;
     border-left: 1px solid $gray-4;
