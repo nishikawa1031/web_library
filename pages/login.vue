@@ -2,24 +2,94 @@
   <v-container fluid>
     <v-layout justify-center>
     <v-col cols="12" sm="8" md="6">
+    <v-card
+      v-if="isWaiting"
+      class="mx-auto"
+      max-width="500"
+      outlined
+    >
+      <p>{{ $t('loading') }}</p>
+    </v-card>
+    <div v-else>
       <v-card
-        v-if="isWaiting"
-        class="mx-auto"
-        max-width="500"
-        outlined
+        v-if="!isLogin"
+        :tile="$vuetify.breakpoint.sm || $vuetify.breakpoint.xs"
+        class="mx-auto fill-width"
+        flat
+        max-width="640"
       >
-        <p>{{ $t('loading') }}</p>
+        <v-card-title class="text-center pa-8">
+          <h4 class="fill-width">会員情報入力</h4>
+        </v-card-title>
+        <v-divider> </v-divider>
+        <div class="px-6 py-8">
+          <div style="max-width:344px" class="mx-auto">
+            <div>
+              <v-btn
+                class="fill-width text-capitalize caption"
+                height="48px"
+                outlined
+                style="border-color:#979797;"
+                tile
+                @click="googleLogin"
+              >
+                <img
+                  class="button-logo-img mr-4"
+                  src="https://madeby.google.com/static/images/google_g_logo.svg"
+                  style="height:24px;"
+                />
+                Googleで登録
+              </v-btn>
+            </div>
+            <div class="separator separator_login_page">
+              <div class="middle_separator">または</div>
+            </div>
+            <div class="pt-6">
+              <div>
+                <v-text-field
+                  v-model="email"
+                  :rules="[emailRules.required, emailRules.regex]"
+                  autofocus
+                  dense
+                  height="48px"
+                  outlined
+                  placeholder="メールアドレス"
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="password"
+                  :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[passwordRules.required, passwordRules.regex]"
+                  :type="passwordShow ? 'text' : 'password'"
+                  dense
+                  height="48px"
+                  name="input-password"
+                  outlined
+                  placeholder="パスワード"
+                  @click:append="passwordShow = !passwordShow"
+                ></v-text-field>
+              </div>
+              <div class="login-btn pb-8">
+                <v-btn
+                  class="fill-width caption"
+                  color="#FFCB00"
+                  depressed
+                  height="48px"
+                  tile
+                >
+                  会員登録
+                </v-btn>
+              </div>
+              <v-divider></v-divider>
+              <div class="pt-8 pb-4">
+                <span>すでにアカウントをお持ちですか？</span>
+                <nuxt-link to="/login">ログインに移動</nuxt-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </v-card>
-      <div v-else>
-        <v-card
-          v-if="!isLogin"
-          class="mx-auto"
-          max-width="500"
-          outlined
-        >
-          <v-btn @click="googleLogin">{{ $t('googlelogin') }}</v-btn>
-        </v-card>
-      </div>
+    </div>
       <div v-if="isLogin">
         <v-btn @click="logOut">{{$t('logout')}}</v-btn>
         <br>
@@ -43,8 +113,6 @@
             ></v-select>
             <v-select
               v-model="answer.year"
-              item-text="name"
-              item-value="name"
               :rules="yearRules"
               :items="years"
               label="年度"
@@ -134,11 +202,36 @@ export default {
         { code: 12, name: '民法'},
         { code: 13, name: '民法'},
       ],
-      years:[
-        {name:'2020'},
-        {name:'2019'},
-        {name:'2018'},
-      ]
+      years: [
+        2020,
+        2019,
+        2018,
+        2017,
+        2016,
+        2015,
+        2014,
+        2013,
+        2012,
+        2011,
+        2010,
+        2009,
+        2008,
+        2007,
+        2006,
+        2005,
+        2004,
+        2003,
+        2002,
+        2001,
+        2000
+      ],
+      email: null,
+      emailRules: {
+      },
+      password: null,
+      passwordShow: false,
+      passwordRules: {
+      }
     }
   },
   mounted() {
@@ -222,5 +315,37 @@ export default {
     list-style: none;
     display: inline-block;
   }
-
+  .fill-width {
+    width: 100%;
+  }
+  .link-caption {
+    text-decoration: none;
+    color: #666 !important;
+    font-size: .75rem;
+  }
+  .separator {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    position: relative;
+  }
+  .middle_separator {
+    position: absolute;
+    padding: 0 16px;
+    color: #ccc;
+    background: #fff;
+    font-size: 11px;
+    text-shadow: 0 1px 0 #fff;
+    text-transform: uppercase;
+    top: -7px;
+    left: 30%;
+  }
+  .middle_separator {
+    color: #777;
+    font-size: 13px;
+    top: -9px;
+    left: 41%;
+  }
 </style>
