@@ -58,6 +58,7 @@
                     color="primary"
                     dark
                     @click.stop="dialog = true"
+                    @click="memorizeSelectedAnswer(answer)"
                   >
                     全画面表示
                   </v-btn>
@@ -76,7 +77,7 @@
       max-width="600px"
     >
       <v-card>
-        <!-- <iframe :src="selectedAnswer"/> -->
+        <iframe :src="selectedAnswer"/>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
@@ -164,6 +165,9 @@ export default {
     },
     getImgUrl(answer){
       return answer.imgUrl
+    },
+    memorizeSelectedAnswer(answer){
+      this.selectedAnswer = answer.imgUrl
     },
   }
 }
