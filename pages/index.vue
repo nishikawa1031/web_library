@@ -74,19 +74,22 @@
     </v-row>
     <v-dialog
       v-model="dialog"
-      max-width="600px"
+      max-width="1200px"
     >
       <v-card>
-        <iframe :src="selectedAnswer"/>
-        <v-card-actions>
-          <v-spacer></v-spacer>
+        <v-layout justify-center>
           <v-btn
-            color="blue darken-1"
-            text
+            color="primary"
+            dark
             @click="dialog = false"
           >
             Close
           </v-btn>
+        </v-layout>
+        <iframe :src="selectedAnswer" width="1200" height="800"/>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
         </v-card-actions>
       </v-card>
     </v-dialog>

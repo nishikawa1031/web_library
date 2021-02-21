@@ -27,8 +27,7 @@
                 <v-btn
                   color="primary"
                   dark
-                  @click.stop="dialog = true"
-                  @click="passAnswerId(answer.imgUrl);"
+                  @click="passAnswerId(answer);"
                 >
                   答案を見る
                 </v-btn>
@@ -44,24 +43,48 @@
         md="8"
       >
         <v-card
-          min-height="80vh"
           v-if="isShowAnswer">
+          <v-list-item three-line>
+            <v-list-item-content>
             <v-layout justify-center>
               <v-card-actions>
                 <v-btn
                   color="primary"
                   dark
-                  @click.stop="dialog = true"
-                  @click="passAnswerId(answer.imgUrl);"
+                  @click.stop="idPagedialog = true"
+                  @click="showAnswerDetail()"
                 >
                   全画面表示
                 </v-btn>
               </v-card-actions>
             </v-layout>
-            <iframe :src="selectedAnswer" width="100%" height="600"/>
+            <iframe :src="getUrl()" width="80%"/>
+            </v-list-item-content>
+          </v-list-item>
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog
+      v-model="idPagedialog"
+      max-width="1200px"
+    >
+      <v-card>
+        <v-layout justify-center>
+          <v-btn
+            color="primary"
+            dark
+            @click="idPagedialog = false"
+          >
+            Close
+          </v-btn>
+        </v-layout>
+        <iframe :src="pushedAnswer" width="1200" height="800"/>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -92,7 +115,8 @@ export default {
         { code: 13, name: '民法'},
       ],
       isShowAnswer: false,
-      selectedAnswer: '',
+      pushedAnswer: '',
+      idPagedialog: false
     }
   },
   components: {
@@ -157,11 +181,16 @@ export default {
     displaySubject(id){
       return this.subjects[id].name
     },
-    passAnswerId(url){
+    passAnswerId(answer){
       this.isShowAnswer = true
-      this.selectedAnswer = url
+      this.pushedAnswer = answer.imgUrl
     },
-    passImgUrl(){}
+    getUrl(){
+      return this.pushedAnswer
+    },
+    showAnswerDetail(){
+      return this.pushedAnswer
+    },
   }
 }
 </script>
