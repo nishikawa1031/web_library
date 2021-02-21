@@ -27,7 +27,6 @@
                 <v-btn
                   color="primary"
                   dark
-                  @click.stop="dialog = true"
                   @click="passUserID(user.id);"
                 >
                   答案を見る
@@ -55,18 +54,16 @@
                 <v-list-item-title class="headline mb-1">{{ answer.year }}年度&nbsp;{{displaySubject(answer)}}</v-list-item-title>
                 <v-list-item-subtitle>
                 <v-layout justify-center>
-
-                <v-btn
-                  color="primary"
-                  dark
-                  @click.stop="dialog = true"
-                  @click="passUserID(user.id);"
-                >
-                  全画面表示
-                </v-btn>
+                  <v-btn
+                    color="primary"
+                    dark
+                    @click.stop="dialog = true"
+                  >
+                    全画面表示
+                  </v-btn>
                 </v-layout>
                 </v-list-item-subtitle>
-              <iframe :src="selectedAnswer" width="80%"/>
+              <iframe :src="getImgUrl(answer)" width="80%"/>
               </v-list-item-content>
             </v-list-item>
             </v-card>
@@ -74,6 +71,24 @@
         </ul>
       </v-col>
     </v-row>
+    <v-dialog
+      v-model="dialog"
+      max-width="600px"
+    >
+      <v-card>
+        <!-- <iframe :src="selectedAnswer"/> -->
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -104,7 +119,8 @@ export default {
       ],
       isShowUserAnswers: false,
       displaySelectedAnswers: [],
-      selectedAnswer: ''
+      selectedAnswer: '',
+      dialog: false
     }
   },
   components: {
@@ -144,8 +160,10 @@ export default {
       }, 1000);
     },
     displaySubject(answer){
-      this.selectedAnswer = answer.imgUrl
       return this.subjects[answer.subject].name
+    },
+    getImgUrl(answer){
+      return answer.imgUrl
     },
   }
 }
