@@ -60,7 +60,7 @@ export default {
   basic: {
     name: 'lawsei',
     pass: 'ganbare',
-    enabled: process.env.ENABLE_BASIC_AUTH === 'true'
+    // enabled: process.env.ENABLE_BASIC_AUTH === 'true'
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
