@@ -41,14 +41,14 @@
                 Googleで登録
               </v-btn>
             </div>
-            <div class="separator separator_login_page">
+            <!-- <div class="separator separator_login_page">
               <div class="middle_separator">または</div>
             </div>
             <div class="pt-6">
               <div>
                 <v-text-field
                   v-model="email"
-                  :rules="[emailRules.required, emailRules.regex]"
+                  :rules="emailRules"
                   autofocus
                   dense
                   height="48px"
@@ -59,7 +59,7 @@
                 <v-text-field
                   v-model="password"
                   :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                  :rules="[passwordRules.required, passwordRules.regex]"
+                  :rules="passwordRules"
                   :type="passwordShow ? 'text' : 'password'"
                   dense
                   height="48px"
@@ -85,7 +85,7 @@
                 <span>すでにアカウントをお持ちですか？</span>
                 <nuxt-link to="/login">ログインに移動</nuxt-link>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </v-card>
@@ -226,12 +226,23 @@ export default {
         2000
       ],
       email: null,
-      emailRules: {
-      },
+      emailRules: [
+        value => !!value || 'Required.',
+        value => (value || '').length <= 20 || 'Max 20 characters',
+        // value => {
+        //   const pattern = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        //   return pattern.test(value) || 'Invalid e-mail.'
+        // },
+      ],
       password: null,
       passwordShow: false,
-      passwordRules: {
-      }
+      passwordRules: [
+        value => !!value || 'Required.',
+        // value => {
+        //   const pattern = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,128}$/.test(value)
+        //   return pattern.test(value) || '半角英小文字大文字数字をそれぞれ1種類以上含む7文字以上128文字以下で入力してください.'
+        // }
+      ]
     }
   },
   mounted() {
