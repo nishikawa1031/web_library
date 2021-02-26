@@ -1,7 +1,12 @@
 <template>
   <v-app-bar fixed app color="blue-grey darken-4">
     <v-toolbar-items>
-      <v-btn text to="/" color="white">{{ $t('title') }}</v-btn>
+      <v-btn text to="/" color="white">
+        <v-icon
+          dark
+        >
+          mdi-school-outline
+        </v-icon>{{ $t('title') }}</v-btn>
       <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
     </v-toolbar-items>
     <v-toolbar-items v-if="!isTopPage">

@@ -2,8 +2,11 @@
   <v-container>
     <v-row no-gutters>
       <v-col
-        cols="6"
-        md="4"
+        cols="12"
+        sm="10"
+        md="8"
+        lg="4"
+        xl="3"
       >
       <ul>
         <li v-for="user in displayUsers" :key="user.id">
