@@ -1,13 +1,30 @@
 <template>
   <v-app-bar fixed app color="blue-grey darken-4">
     <v-toolbar-items>
-      <v-btn text to="/" color="white">
+      <v-btn text to="/" color="white"
+        v-if="$vuetify.breakpoint.smAndUp"
+      >
+          {{ $t('title') }}
+      </v-btn>
+      <v-btn v-else to="/" color="blue-grey darken-4">
         <v-icon
-          dark
+          color="white"
         >
-          mdi-school-outline
-        </v-icon>{{ $t('title') }}</v-btn>
-      <v-btn text to="/login" color="white">{{ $t('login') }}</v-btn>
+          mdi-home
+        </v-icon>
+      </v-btn>
+      <v-btn text to="/login" color="white"
+        v-if="$vuetify.breakpoint.smAndUp"
+      >
+        {{ $t('login') }}
+      </v-btn>
+      <v-btn v-else to="/login" color="blue-grey darken-4">
+        <v-icon
+          color="white"
+        >
+          mdi-login-variant
+        </v-icon>
+      </v-btn>
     </v-toolbar-items>
     <v-toolbar-items v-if="!isTopPage">
         <v-menu offset-y>

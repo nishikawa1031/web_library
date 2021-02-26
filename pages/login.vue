@@ -1,7 +1,13 @@
 <template>
   <v-container fluid>
-    <v-layout justify-center>
-    <v-col cols="12" sm="8" md="6">
+    <v-row no-gutters>
+      <v-col
+        cols="12"
+        sm="10"
+        md="8"
+        lg="4"
+        xl="3"
+      >
     <v-card
       v-if="isWaiting"
       class="mx-auto"
@@ -155,7 +161,7 @@
           </v-card-actions>
         </v-card> -->
       </v-col>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 
