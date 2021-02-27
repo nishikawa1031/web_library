@@ -6,7 +6,7 @@
       >
           {{ $t('title') }}
       </v-btn>
-      <v-btn v-else to="/" color="blue-grey darken-4">
+      <v-btn v-else small to="/" color="blue-grey darken-4">
         <v-icon
           color="white"
         >
@@ -18,7 +18,7 @@
       >
         {{ $t('login') }}
       </v-btn>
-      <v-btn v-else to="/login" color="blue-grey darken-4">
+      <v-btn v-else small to="/login" color="blue-grey darken-4">
         <v-icon
           color="white"
         >
@@ -29,7 +29,8 @@
     <v-toolbar-items v-if="!isTopPage">
         <v-menu offset-y>
           <template v-slot:activator="{on}">
-            <v-btn v-on="on" text color="white">民事系</v-btn>
+            <v-btn v-if="$vuetify.breakpoint.smAndUp" v-on="on" text color="white">民事系</v-btn>
+            <v-btn v-else v-on="on" text color="white">民事</v-btn>
           </template>
           <v-list color="blue-grey darken-4">
             <v-list-item>
@@ -43,7 +44,8 @@
         </v-menu>
         <v-menu offset-y>
           <template v-slot:activator="{on}">
-            <v-btn v-on="on" text color="white">刑事系</v-btn>
+            <v-btn v-if="$vuetify.breakpoint.smAndUp" v-on="on" text color="white">刑事系</v-btn>
+            <v-btn v-else v-on="on" text color="white">刑事</v-btn>
           </template>
           <v-list color="blue-grey darken-4">
             <v-list-item>
@@ -56,7 +58,8 @@
         </v-menu>
         <v-menu offset-y>
           <template v-slot:activator="{on}">
-            <v-btn v-on="on" text color="white">公法系</v-btn>
+            <v-btn v-if="$vuetify.breakpoint.smAndUp" v-on="on" text color="white">公法系</v-btn>
+            <v-btn v-else v-on="on" text color="white">公法</v-btn>
           </template>
           <v-list color="blue-grey darken-4">
             <v-list-item>
@@ -69,7 +72,8 @@
         </v-menu>
         <v-menu offset-y>
           <template v-slot:activator="{on}">
-            <v-btn v-on="on" text color="white">選択科目</v-btn>
+            <v-btn v-if="$vuetify.breakpoint.smAndUp" v-on="on" text color="white">選択科目</v-btn>
+            <v-btn v-else v-on="on" text color="white">選択</v-btn>
           </template>
           <v-list color="blue-grey darken-4">
             <v-list-item>
