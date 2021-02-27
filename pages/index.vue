@@ -16,6 +16,7 @@
           >
             <v-list-item three-line>
               <v-list-item-avatar
+                v-if="$vuetify.breakpoint.smAndUp"
                 size="80"
                 color="grey"
               >

@@ -1,7 +1,7 @@
 <template>
 <header>
   <v-app-bar fixed app color="blue-grey darken-4">
-    <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" color="white" @click="drawer = true"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.smAndUp" color="white" @click="drawer = true"></v-app-bar-nav-icon>
     <v-toolbar-items>
       <v-btn text to="/" color="white"
         v-if="$vuetify.breakpoint.smAndUp"

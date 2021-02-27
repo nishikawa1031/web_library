@@ -8,6 +8,9 @@
         lg="4"
         xl="3"
       >
+      <div class="text-center">
+        <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{showSubject()}}</p>
+      </div>
       <ul>
         <li v-for="answer in displayAnswers" :key="answer.id">
           <v-card
@@ -16,6 +19,7 @@
           >
             <v-list-item three-line>
               <v-list-item-avatar
+                v-if="$vuetify.breakpoint.smAndUp"
                 size="80"
                 color="grey"
               >
@@ -193,6 +197,10 @@ export default {
     },
     showAnswerDetail(){
       return this.pushedAnswer
+    },
+    showSubject(){
+      const subjectName = this.urlNumber ? this.subjects[this.urlNumber].name : '' ;
+      return subjectName
     },
   }
 }
