@@ -6,7 +6,7 @@
       </head-navigation>
     </div>
     <div class="appContainer">
-      <div class="naviContainer">
+      <div v-if="$vuetify.breakpoint.smAndUp" class="naviContainer">
         <side-navigation />
       </div>
       <main class="mainContainer">

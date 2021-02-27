@@ -1,29 +1,17 @@
 <template>
+<header>
   <v-app-bar fixed app color="blue-grey darken-4">
+    <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" color="white" @click="drawer = true"></v-app-bar-nav-icon>
     <v-toolbar-items>
       <v-btn text to="/" color="white"
         v-if="$vuetify.breakpoint.smAndUp"
       >
           {{ $t('title') }}
       </v-btn>
-      <v-btn v-else small to="/" color="blue-grey darken-4">
-        <v-icon
-          color="white"
-        >
-          mdi-home
-        </v-icon>
-      </v-btn>
       <v-btn text to="/login" color="white"
         v-if="$vuetify.breakpoint.smAndUp"
       >
         {{ $t('login') }}
-      </v-btn>
-      <v-btn v-else small to="/login" color="blue-grey darken-4">
-        <v-icon
-          color="white"
-        >
-          mdi-login-variant
-        </v-icon>
       </v-btn>
     </v-toolbar-items>
     <v-toolbar-items v-if="!isTopPage">
@@ -86,6 +74,36 @@
         </v-menu>
     </v-toolbar-items>
   </v-app-bar>
+  <v-navigation-drawer
+    v-model="drawer"
+    fixed
+    temporary
+  >
+    <v-list
+      nav
+      dense
+    >
+      <v-list-item-group>
+        <v-list-item>
+          <v-list-item-title>
+            <v-btn text to="/" color="blue-grey darken-4">
+              HOME
+            </v-btn>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
+            <v-btn text to="/login" color="blue-grey darken-4"
+            >
+              {{ $t('login') }}
+            </v-btn>
+          </v-list-item-title>
+        </v-list-item>
+        <Calender/>
+      </v-list-item-group>
+    </v-list>
+  </v-navigation-drawer>
+  </header>
 </template>
 
 <script>
@@ -101,6 +119,7 @@ export default {
   data() {
     return {
       isTopPage: true,
+      drawer: false
     }
   },
   mounted(){

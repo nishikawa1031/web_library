@@ -92,7 +92,6 @@
         <iframe :src="selectedAnswer" width="1200" height="800"/>
         <v-card-actions>
           <v-spacer></v-spacer>
-
         </v-card-actions>
       </v-card>
     </v-dialog>
