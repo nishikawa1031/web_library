@@ -8,7 +8,7 @@
         lg="4"
         xl="3"
       >
-      <div class="text-center">
+      <div v-if="!$vuetify.breakpoint.smAndUp" class="text-center">
         <p>{{this.$route.params.id}}年度&nbsp;&nbsp;{{showSubject()}}</p>
       </div>
       <ul>
