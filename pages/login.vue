@@ -143,7 +143,7 @@
         </div>
       </v-col>
       <v-col cols="12" sm="8" md="6">
-        <!-- <v-card
+        <v-card
           class="mx-auto"
           max-width="344"
           outlined
@@ -152,14 +152,14 @@
             {{ $t('profile') }}
           </v-card-title>
           <v-card-text>
-            {{ user }}
+            {{ user }}{{ user.displayName }}
           </v-card-text>
           <v-card-actions>
             <v-btn @click="edit()">
               {{$t('edit')}}
             </v-btn>
           </v-card-actions>
-        </v-card> -->
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -181,6 +181,7 @@ export default {
   },
   data() {
     return {
+      isNewUser: false,
       subjectRules:[
         v => !!v || "subject is required",
       ],
@@ -257,6 +258,7 @@ export default {
       if (user) {
         this.isLogin = true
         this.user = user
+        this.getUsers()
       } else {
         this.isLogin = false
         this.user = []
@@ -282,6 +284,28 @@ export default {
             this.allUsers.push(doc.data())
           })
         })
+      this.isNewUser = this.allUsers.filter(e => e.id == this.user.uid).length == 0;
+      console.log(this.isNewUser,this.allUsers,this.allUsers.filter(e => e.id == this.user.uid).length,this.user.uid)
+      const db = firebase.firestore()
+      const dbUsers = db.collection('users')
+      if (this.isNewUser) {
+        dbUsers
+          .add({
+            id: '',
+            name: this.user.displayName,
+            email: this.user.email,
+            created_at: firebase.firestore.FieldValue.serverTimestamp()
+          })
+          .then(docRef => {
+            dbUsers.doc(docRef.id).update({
+              id: docRef.id
+            }).then(() => {
+                // success
+            }).catch(error => {
+            // error
+            })
+          })
+      }
     },
     submit() {
       const db = firebase.firestore()
@@ -294,7 +318,7 @@ export default {
           content: this.answer.content,
           count: 0,
           like: 0,
-          user_id: '',
+          user_id: this.user.id,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
