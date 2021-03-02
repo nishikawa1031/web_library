@@ -325,7 +325,7 @@ export default {
           content: this.answer.content,
           count: 0,
           like: 0,
-          user_id: this.user.uid,
+          user_id: this.user.id,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
