@@ -258,7 +258,7 @@ export default {
       if (user) {
         this.isLogin = true
         this.user = user
-        this.getUsers()
+        // this.getUsers()
       } else {
         this.isLogin = false
         this.user = []
@@ -318,7 +318,7 @@ export default {
           content: this.answer.content,
           count: 0,
           like: 0,
-          user_id: this.user.id,
+          user_id: this.user.uid,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
