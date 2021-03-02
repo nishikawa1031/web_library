@@ -143,7 +143,7 @@
         </div>
       </v-col>
       <v-col cols="12" sm="8" md="6">
-        <v-card
+        <!-- <v-card
           class="mx-auto"
           max-width="344"
           outlined
@@ -159,7 +159,7 @@
               {{$t('edit')}}
             </v-btn>
           </v-card-actions>
-        </v-card>
+        </v-card> -->
       </v-col>
     </v-row>
   </v-container>
