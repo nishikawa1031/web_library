@@ -181,7 +181,7 @@ export default {
   },
   data() {
     return {
-      isNewUser: false,
+      isNewUser: true,
       subjectRules:[
         v => !!v || "subject is required",
       ],
@@ -258,7 +258,7 @@ export default {
       if (user) {
         this.isLogin = true
         this.user = user
-        // this.getUsers()
+        this.getUsers()
       } else {
         this.isLogin = false
         this.user = []
@@ -284,11 +284,16 @@ export default {
             this.allUsers.push(doc.data())
           })
         })
-      this.isNewUser = this.allUsers.filter(e => e.id == this.user.uid).length == 0;
-      console.log(this.isNewUser,this.allUsers,this.allUsers.filter(e => e.id == this.user.uid).length,this.user.uid)
+
       const db = firebase.firestore()
       const dbUsers = db.collection('users')
-      if (this.isNewUser) {
+      setTimeout(() => {
+        for (let i = 0; i < this.allUsers.length; i++) {
+          if (this.allUsers[i].email == this.user.email) {
+            this.isNewUser = false
+          }
+        }
+        if (this.isNewUser) {
         dbUsers
           .add({
             id: '',
@@ -300,12 +305,14 @@ export default {
             dbUsers.doc(docRef.id).update({
               id: docRef.id
             }).then(() => {
+              console.log("create")
                 // success
             }).catch(error => {
             // error
             })
           })
       }
+      }, 1000);
     },
     submit() {
       const db = firebase.firestore()
