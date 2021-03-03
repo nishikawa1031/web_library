@@ -124,12 +124,6 @@
               label="年度"
               dense
             ></v-select>
-            <v-text-field
-              v-model="answer.content"
-              counter="200"
-              label="コメント"
-              outlined
-            ></v-text-field>
             <label class="postImage-appendBtn">
               <input @change="upload" type="file" data-label="画像の添付">
             </label>
@@ -191,7 +185,6 @@ export default {
       answer: {
         year: '',
         subject: '',
-        content:''
       },
       subjects: [
         { code: 0, name: '民法'},
@@ -294,24 +287,24 @@ export default {
           }
         }
         if (this.isNewUser) {
-        dbUsers
-          .add({
-            id: '',
-            name: this.user.displayName,
-            email: this.user.email,
-            created_at: firebase.firestore.FieldValue.serverTimestamp()
-          })
-          .then(docRef => {
-            dbUsers.doc(docRef.id).update({
-              id: docRef.id
-            }).then(() => {
-              console.log("create")
-                // success
-            }).catch(error => {
-            // error
+          dbUsers
+            .add({
+              id: '',
+              name: this.user.displayName,
+              email: this.user.email,
+              created_at: firebase.firestore.FieldValue.serverTimestamp()
             })
-          })
-      }
+            .then(docRef => {
+              dbUsers.doc(docRef.id).update({
+                id: docRef.id
+              }).then(() => {
+                console.log("create")
+                  // success
+              }).catch(error => {
+              // error
+              })
+            })
+        }
       }, 1000);
     },
     submit() {
@@ -322,9 +315,6 @@ export default {
           id: "",
           year: this.answer.year,
           subject: this.answer.subject,
-          content: this.answer.content,
-          count: 0,
-          like: 0,
           user_id: this.user.id,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
