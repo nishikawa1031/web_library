@@ -175,6 +175,7 @@ export default {
   },
   data() {
     return {
+      loginUser: [],
       isNewUser: true,
       subjectRules:[
         v => !!v || "subject is required",
@@ -284,6 +285,7 @@ export default {
         for (let i = 0; i < this.allUsers.length; i++) {
           if (this.allUsers[i].email == this.user.email) {
             this.isNewUser = false
+            this.loginUser = this.allUsers[i]
           }
         }
         if (this.isNewUser) {
@@ -315,7 +317,7 @@ export default {
           id: "",
           year: this.answer.year,
           subject: this.answer.subject,
-          user_id: this.user.id,
+          user_id: this.loginUser.id,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
         })
