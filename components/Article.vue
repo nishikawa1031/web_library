@@ -19,7 +19,7 @@ export default {
     };
   },
 
-  methods: {s
+  methods: {
   }
 }
 </script>

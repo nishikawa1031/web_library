@@ -6,9 +6,6 @@
       </head-navigation>
     </div>
     <div class="appContainer">
-      <div v-if="$vuetify.breakpoint.smAndUp" class="naviContainer">
-        <side-navigation />
-      </div>
       <main class="mainContainer">
         <v-container class="px-4 py-8">
           <nuxt />
@@ -19,11 +16,9 @@
 </template>
 
 <script>
-import SideNavigation from '~/components/SideNavigation.vue'
 
 export default {
   components: {
-    SideNavigation
   },
   mounted() {
   },
