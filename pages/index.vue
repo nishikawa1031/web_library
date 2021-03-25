@@ -28,13 +28,6 @@
                 <v-list-item-subtitle>コメント：{{ user.comment }}</v-list-item-subtitle>
               </v-list-item-content>
               <v-card-actions>
-                <v-btn
-                  color="primary"
-                  dark
-                  @click="passUserID(user.id);"
-                >
-                  答案を見る
-                </v-btn>
               </v-card-actions>
             </v-list-item>
           </v-card>

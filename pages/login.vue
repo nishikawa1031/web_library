@@ -108,22 +108,12 @@
             {{ $t('post') }}
           </v-card-title>
           <v-card-text>
-            <v-select
-              v-model="answer.subject"
-              item-text="name"
-              item-value="code"
-              :rules="subjectRules"
-              :items="subjects"
-              label="科目"
+            <v-text-field
+              v-model="answer.comment"
+              :rules="commentRules"
+              label="キャプションを書いてください"
               dense
-            ></v-select>
-            <v-select
-              v-model="answer.year"
-              :rules="yearRules"
-              :items="years"
-              label="年度"
-              dense
-            ></v-select>
+            ></v-text-field>
             <label class="postImage-appendBtn">
               <input @change="upload" type="file" data-label="画像の添付">
             </label>
@@ -169,63 +159,19 @@ export default {
       isLogin: false,
       user: [],
       loginUser: 'aaa',
-      year: [],
-      subject: []
+      comment: []
     }
   },
   data() {
     return {
       loginUser: [],
       isNewUser: true,
-      subjectRules:[
-        v => !!v || "subject is required",
-      ],
-      yearRules:[
-        v => !!v || 'year is required',
+      commentRules:[
+        v => !!v || "comment is required",
       ],
       answer: {
-        year: '',
-        subject: '',
+        comment: '',
       },
-      subjects: [
-        { code: 0, name: '民法'},
-        { code: 1, name: '民訴'},
-        { code: 2, name: '商法'},
-        { code: 3, name: '刑法'},
-        { code: 4, name: '刑訴'},
-        { code: 5, name: '憲法'},
-        { code: 6, name: '行政法'},
-        { code: 7, name: '倒産法'},
-        { code: 8, name: '労働法'},
-        { code: 9, name: '民法'},
-        { code: 10, name: '民法'},
-        { code: 11, name: '民法'},
-        { code: 12, name: '民法'},
-        { code: 13, name: '民法'},
-      ],
-      years: [
-        2020,
-        2019,
-        2018,
-        2017,
-        2016,
-        2015,
-        2014,
-        2013,
-        2012,
-        2011,
-        2010,
-        2009,
-        2008,
-        2007,
-        2006,
-        2005,
-        2004,
-        2003,
-        2002,
-        2001,
-        2000
-      ],
       email: null,
       emailRules: [
         value => !!value || 'Required.',
@@ -315,8 +261,7 @@ export default {
       dbAnswers
         .add({
           id: "",
-          year: this.answer.year,
-          subject: this.answer.subject,
+          comment: this.answer.comment,
           user_id: this.loginUser.id,
           imgUrl: this.imgUrl,
           created_at: firebase.firestore.FieldValue.serverTimestamp()
