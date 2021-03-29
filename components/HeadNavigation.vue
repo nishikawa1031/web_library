@@ -99,7 +99,6 @@
             </v-btn>
           </v-list-item-title>
         </v-list-item>
-        <Calender/>
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
